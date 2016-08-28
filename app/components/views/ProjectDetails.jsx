@@ -11,13 +11,12 @@ export default class ProjectDetails extends React.Component {
 
   getHours() {
     var hours =
-      this
-      .props
-      .tasks
-      .map(task =>
-          task.analise 
-        + task.teste
-        + task.desenvolvimento)
+      Object
+      .keys(this.props.tasks || {})
+      .map(key =>
+          this.props.tasks[key].analisis_duration 
+        + this.props.tasks[key].testing_duration
+        + this.props.tasks[key].development_duration)
       .reduce((previous, current) => 
         previous + current, 0)
 
@@ -34,12 +33,17 @@ export default class ProjectDetails extends React.Component {
         <h4>Project Details</h4>
 
         <p>
-          <strong>Horas: </strong> 
-          { this.getHours() } horas
+          <strong>Hours: </strong> 
+          { this.getHours() } Hours
         </p>
 
         <p>
-          <strong>Valor: </strong> 
+          <strong>Value per Hour: </strong>
+          R$ { this.props.valuePerHour }/hour
+        </p>
+
+        <p>
+          <strong>Result Value: </strong> 
           R$ { this.getValue() }
         </p>
       </Card>

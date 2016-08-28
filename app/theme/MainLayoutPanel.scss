@@ -5,5 +5,13 @@
     overflow-y: auto; 
     padding: 1.8rem;
     justify-content: center;
+
+    & > div {
+      width: 100%;
+
+      & > h1 {
+        margin: 0;
+      }
+    }
   }
 }

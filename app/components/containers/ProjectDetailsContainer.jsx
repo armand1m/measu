@@ -18,10 +18,4 @@ const mapStateToProps = (state, ownProps) => {
   return { tasks }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetailsContainer);
+export default connect(mapStateToProps)(ProjectDetailsContainer);

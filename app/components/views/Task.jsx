@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListCheckbox, Card, CardText, CardActions, IconButton } from 'react-toolbox';
+import { ListCheckbox, ListDivider, Card, CardText, CardActions, IconButton } from 'react-toolbox';
 import TaskCardTheme from '../../theme/TaskCard.scss';
 import TaskCardTextTheme from '../../theme/TaskCardText.scss';
 import TaskCardActionsTheme from '../../theme/TaskCardActions.scss';
@@ -23,25 +23,32 @@ export default class Task extends React.Component {
           onChange={ this.onChange } />
         
         <CardText theme={ TaskCardTextTheme } >
-          { this.props.task.description }
+          <p>
+            <strong>Description: </strong>
+            { this.props.task.description }
+          </p>
+
+          <br />
+
+          <p>
+            <strong>Analisis: </strong> 
+            { this.props.task.analisis_duration } hours
+          </p>
+
+          <p>
+            <strong>Testing: </strong> 
+            { this.props.task.testing_duration } hours
+          </p>
+
+          <p>
+            <strong>Development: </strong> 
+            { this.props.task.development_duration } hours
+          </p>
         </CardText>
 
+        <ListDivider />
+
         <CardActions theme={ TaskCardActionsTheme }>
-          <p>
-            <strong>Analise: </strong> 
-            { this.props.task.analise } horas
-          </p>
-
-          <p>
-            <strong>Teste: </strong> 
-            { this.props.task.teste } horas
-          </p>
-
-          <p>
-            <strong>Desenvolvimento: </strong> 
-            { this.props.task.desenvolvimento } horas
-          </p>
-
           <IconButton
             primary
             icon='delete'

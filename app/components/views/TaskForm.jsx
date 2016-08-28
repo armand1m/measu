@@ -7,9 +7,9 @@ import TaskFormCardActionsTheme from '../../theme/TaskFormCardActions';
 const initialState = {
   title: '',
   description: '',
-  analise: 0,
-  teste: 0,
-  desenvolvimento: 0,
+  analisis_duration: 0,
+  testing_duration: 0,
+  development_duration: 0,
   done: false
 }
 
@@ -58,27 +58,27 @@ export default class TaskForm extends React.Component {
 
         <Input 
           type='number' 
-          label='Horas de Analise' 
-          title='analise'
-          value={ this.state.analise } 
+          label='Hours for Analisis' 
+          title='analisis_duration'
+          value={ this.state.analisis_duration } 
           required={ true }
-          onChange={ this.handleChange.bind(this, 'analise') } />
+          onChange={ this.handleChange.bind(this, 'analisis_duration') } />
 
         <Input 
           type='number' 
-          label='Horas de Teste' 
-          title='teste'
-          value={ this.state.teste } 
+          label='Hours for Testing' 
+          title='testing_duration'
+          value={ this.state.testing_duration } 
           required={ true }
-          onChange={ this.handleChange.bind(this, 'teste') } />
+          onChange={ this.handleChange.bind(this, 'testing_duration') } />
 
         <Input 
           type='number' 
-          label='Horas de Desenvolvimento' 
-          title='desenvolvimento'
-          value={ this.state.desenvolvimento } 
+          label='Hours for Development' 
+          title='development_duration'
+          value={ this.state.development_duration } 
           required={ true }
-          onChange={ this.handleChange.bind(this, 'desenvolvimento') } />
+          onChange={ this.handleChange.bind(this, 'development_duration') } />
 
         <CardActions theme={ TaskFormCardActionsTheme }>
           <IconButton

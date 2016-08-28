@@ -2,36 +2,28 @@ import * as types from '../actions/action-types';
 
 let counter = 0
 
-const initialState = []
+const initialState = {}
 
 const tasks = function(state = initialState, action) {
   switch (action.type) {
-    case types.ADD_TASK_SUCCESS:
-      let task = Object.assign({
-        id: counter++,
-        done: false
-      }, action.payload.task, {
-        teste: +action.payload.task.teste,
-        analise: +action.payload.task.analise,
-        desenvolvimento: +action.payload.task.desenvolvimento,
-      })
+    case types.GET_TASKS_SUCCESS:
+      return action.payload.tasks
 
-      return state.concat([ task ])
+    case types.TASK_CHANGED:
+      var { key, value } = action.payload
 
-    case types.TOGGLE_TASK_SUCCESS:
-      return state.map(task => {
-        if (task.id !== action.payload.task.id) {
-          return task
-        }
-
-        return {
-          ...task,
-          done: !task.done
-        }
-      })
+      return {
+        ...state,
+        [key]: value
+      }
 
     case types.REMOVE_TASK_SUCCESS:
-      return state.filter(task => task.id !== action.payload.task.id)
+      return Object.keys(state)
+        .filter(key => key !== action.payload.key)
+        .reduce((result, current) => {
+          result[current] = state[current];
+          return result;
+        }, {});
     
     default:
       return state
