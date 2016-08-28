@@ -1,0 +1,9 @@
+.panel {
+  &__body {
+    flex: 1; 
+    display: flex;
+    overflow-y: auto; 
+    padding: 1.8rem;
+    justify-content: center;
+  }
+}
