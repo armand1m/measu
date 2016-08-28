@@ -13,3 +13,10 @@ export function toggleTaskSuccess(task) {
     payload: { task }
   }
 }
+
+export function removeTaskSuccess(task) {
+  return {
+    type: types.REMOVE_TASK_SUCCESS,
+    payload: { task }
+  }
+}

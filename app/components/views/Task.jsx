@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListCheckbox, Card, CardText, CardActions } from 'react-toolbox';
+import { ListCheckbox, Card, CardText, CardActions, IconButton } from 'react-toolbox';
 import TaskCardTheme from '../../theme/TaskCard.scss';
 import TaskCardTextTheme from '../../theme/TaskCardText.scss';
 import TaskCardActionsTheme from '../../theme/TaskCardActions.scss';
@@ -10,6 +10,7 @@ export default class Task extends React.Component {
     super(props)
 
     this.onChange = this.props.onChange.bind(this, this.props.task)
+    this.onRemove = this.props.onRemove.bind(this, this.props.task)
   }
 
   render() {
@@ -40,6 +41,11 @@ export default class Task extends React.Component {
             <strong>Desenvolvimento: </strong> 
             { this.props.task.desenvolvimento } horas
           </p>
+
+          <IconButton
+            primary
+            icon='delete'
+            onClick={ this.onRemove } />
         </CardActions>
       </Card>
     )

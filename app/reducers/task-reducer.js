@@ -30,6 +30,9 @@ const tasks = function(state = initialState, action) {
         }
       })
 
+    case types.REMOVE_TASK_SUCCESS:
+      return state.filter(task => task.id !== action.payload.task.id)
+    
     default:
       return state
   }
