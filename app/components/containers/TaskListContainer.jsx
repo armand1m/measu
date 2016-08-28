@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TaskContainer from './TaskContainer.jsx';
 import TaskList from '../views/TaskList.jsx';
-import { getTasksSuccess, removeTaskSuccess } from '../../actions/task-actions';
+import { getTasksSuccess, removeTaskSuccess, taskChanged } from '../../actions/task-actions';
 import { getTasksReference } from '../../services/task-service';
 
 class TaskListContainer extends React.Component {

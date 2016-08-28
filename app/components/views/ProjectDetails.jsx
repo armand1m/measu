@@ -1,30 +1,11 @@
 import React from 'react';
-import { Card } from 'react-toolbox'
+import { Card, List, ListItem, ListDivider } from 'react-toolbox'
 import ProjectDetailsCardTheme from '../../theme/ProjectDetailsCard';
+import ProjectDetailsListItemTheme from '../../theme/ProjectDetailsListItem';
 
 export default class ProjectDetails extends React.Component {
   constructor(props) {
     super(props)
-
-    this.getHours = this.getHours.bind(this)
-  }
-
-  getHours() {
-    var hours =
-      Object
-      .keys(this.props.tasks || {})
-      .map(key =>
-          this.props.tasks[key].analisis_duration 
-        + this.props.tasks[key].testing_duration
-        + this.props.tasks[key].development_duration)
-      .reduce((previous, current) => 
-        previous + current, 0)
-
-    return hours
-  }
-
-  getValue() {
-    return this.getHours() * this.props.valuePerHour
   }
 
   render() {
@@ -32,20 +13,30 @@ export default class ProjectDetails extends React.Component {
       <Card theme={ ProjectDetailsCardTheme }>
         <h4>Project Details</h4>
 
-        <p>
-          <strong>Hours: </strong> 
-          { this.getHours() } Hours
-        </p>
+        <List>
+          <ListItem
+            theme={ ProjectDetailsListItemTheme }
+            avatar='images/photo.gif'
+            caption='Project Name'
+            legend='Project Description' />
 
-        <p>
-          <strong>Value per Hour: </strong>
-          R$ { this.props.valuePerHour }/hour
-        </p>
+          <ListDivider />
 
-        <p>
-          <strong>Result Value: </strong> 
-          R$ { this.getValue() }
-        </p>
+          <p>
+            <strong>Hours: </strong> 
+            { this.props.getTotalHours() }
+          </p>
+
+          <p>
+            <strong>Value per Hour: </strong>
+            R$ { this.props.valuePerHour }/hour
+          </p>
+
+          <p>
+            <strong>Result Value: </strong> 
+            R$ { this.props.getTotalValue() }
+          </p>
+        </List>
       </Card>
     )
   }

@@ -16,9 +16,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './www/index.html'));
-});
+app.use(express.static('www'));
 
 app.listen(8080, '0.0.0.0', (err) => {
   if (err) {

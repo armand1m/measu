@@ -43,3 +43,13 @@ export function toggleTask(key, task) {
       done: !task.done
     })
 }
+
+export function getTaskTotalHours(task) {
+  return task.analisis_duration 
+        + task.testing_duration
+        + task.development_duration
+}
+
+export function getTaskTotalValue(valuePerHour, task) {
+  return getTaskTotalHours(task) * valuePerHour
+}
