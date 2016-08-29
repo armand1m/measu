@@ -1,7 +1,5 @@
 import * as types from '../actions/action-types';
 
-let counter = 0
-
 const initialState = {}
 
 const tasks = function(state = initialState, action) {

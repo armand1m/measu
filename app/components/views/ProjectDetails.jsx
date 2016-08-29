@@ -29,12 +29,12 @@ export default class ProjectDetails extends React.Component {
 
           <p>
             <strong>Value per Hour: </strong>
-            R$ { this.props.valuePerHour }/hour
+            { this.props.valueUnit } { this.props.valuePerHour }
           </p>
 
           <p>
             <strong>Result Value: </strong> 
-            R$ { this.props.getTotalValue() }
+            { this.props.valueUnit } { this.props.getTotalValue() }
           </p>
         </List>
       </Card>

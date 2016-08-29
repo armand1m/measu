@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Sample project",
   "scripts": {
-    "start": "node ./server",
-    "build": "cross-env NODE_ENV=production UV_THREADPOOL_SIZE=100 webpack --config ./webpack.config"
+    "start": "npm run build && node server.production",
+    "startd": "node server.development",
+    "build": "cross-env NODE_ENV=production UV_THREADPOOL_SIZE=100 webpack --config ./webpack.prod"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

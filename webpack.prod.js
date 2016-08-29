@@ -1,26 +1,22 @@
-const path = require('path');
-const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   context: __dirname,
-  devtool: 'inline-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './app/client.js'
-  ],
+  devtool: 'cheap-module-source-map',
+  entry: './app/client.js',
   output: {
     path: path.join(__dirname, 'www'),
     filename: 'app.js',
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.scss', '.css', '.js', '.json'],
+    extensions: ['', '.scss', '.css', '.js', '.jsx', '.json'],
     modulesDirectories: [
-      'node_modules',
       path.resolve(__dirname, './node_modules')
-    ]
+    ]  
   },
   module: {
     loaders: [
@@ -33,7 +29,7 @@ module.exports = {
         test: /(\.scss|\.css)$/,
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
       }
-    ]
+    ],
   },
   postcss: [autoprefixer],
   sassLoader: {
@@ -42,10 +38,22 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('app.css', { allChunks: true }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false
+      },
+      compress: {
+        warnings: false,
+        screw_ie8: true
+      },
+      mangle: true,
+      minimize: true,
+      sourceMap: false
+    }),
   ]
 };

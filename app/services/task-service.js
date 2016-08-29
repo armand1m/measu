@@ -1,5 +1,8 @@
 import firebase from './firebase-service'
 
+const TASKS_REFERENCE = 'tasks/'
+const getTaskKeyReference = (key) => `${TASKS_REFERENCE}${key}`
+
 export function createTask(task) {
   var key = 
     firebase
@@ -10,7 +13,7 @@ export function createTask(task) {
 
   return firebase
   .database()
-  .ref(`tasks/${key}`)
+  .ref(getTaskKeyReference(key))
   .set(Object.assign(
     { done: false }
     , task
@@ -25,23 +28,23 @@ export function createTask(task) {
 export function getTasksReference() {
   return firebase
     .database()
-    .ref('tasks/')
+    .ref(TASKS_REFERENCE)
+}
+
+export function getTaskReference(key) {
+  return firebase
+    .database()
+    .ref(getTaskKeyReference(key))
 }
 
 export function deleteTask(key) {
-  return firebase
-    .database()
-    .ref(`tasks/${key}`)
-    .remove()
+  return getTaskReference(key).remove()
 }
 
 export function toggleTask(key, task) {
-  return firebase
-    .database()
-    .ref(`tasks/${key}`)
-    .update({
-      done: !task.done
-    })
+  let done = !task.done
+  
+  return getTaskReference(key).update({ done })
 }
 
 export function getTaskTotalHours(task) {

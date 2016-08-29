@@ -25,6 +25,7 @@ class ProjectDetailsContainer extends React.Component {
   render() {
     return (
       <ProjectDetails 
+        valueUnit={ config.valueUnit }
         valuePerHour={ config.valuePerHour }
         getTotalHours={ this.getTotalHours }
         getTotalValue={ this.getTotalValue }

@@ -1,3 +1,4 @@
 export default {
-  valuePerHour: 40
+  valuePerHour: 40,
+  valueUnit: "R$"
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import { Input, TimePicker, IconButton, Card, CardActions } from 'react-toolbox'
 import TaskFormCardTheme from '../../theme/TaskFormCard';
 import TaskFormCardActionsTheme from '../../theme/TaskFormCardActions';

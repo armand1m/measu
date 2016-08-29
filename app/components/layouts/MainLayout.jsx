@@ -40,13 +40,11 @@ export default class MainLayout extends React.Component {
           width={ 6 }
           scrollY={ true }
           pinned={ this.state.sidebar.pinned } >
-          <div style={
-            { 
-              marginTop: "6.4rem",
-              overflowY: "scroll",
-              "WebkitOverflowScrolling": "touch"
-            }
-          }>
+          <div style={{ 
+            marginTop: "6.4rem",
+            overflowY: "scroll",
+            "WebkitOverflowScrolling": "touch"
+          }}>
             <ProjectDetailsContainer />
             <TaskFormContainer />
           </div>
