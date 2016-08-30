@@ -43,7 +43,7 @@ class TaskContainer extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="box">
         <Task 
           task={ this.props.task } 
           onChange={ this.onChange }

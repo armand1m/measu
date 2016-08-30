@@ -10,42 +10,40 @@ export default class Task extends React.Component {
 
   render() {
     return (
-      <div style={ { border: "1px solid #f00" } }>
-        <h4>{ this.props.task.title }</h4>
-        <input type="checkbox" checked={ this.props.task.done } onChange={ this.onChange } />
-        
-        <div style={{ border: "1px solid #000" }}>
-          <p>
-            <strong>Description: </strong>
-            { this.props.task.description }
-          </p>
+      <article className="media">
+        <div className="media-content">
+          <div className="content">
+            <h1 className="is-marginless">{ this.props.task.title }</h1>
 
-          <br />
+            <br />
+            <br />
 
-          <p>
-            <strong>Analisis: </strong> 
-            { this.props.task.analisis_duration } hours
-          </p>
+            <p>
+              <strong>Description: </strong>
+              { this.props.task.description }
+            </p>
 
-          <p>
-            <strong>Testing: </strong> 
-            { this.props.task.testing_duration } hours
-          </p>
+            <p>
+              <strong>Analisis: </strong> 
+              { this.props.task.analisis_duration } hours
+            </p>
 
-          <p>
-            <strong>Development: </strong> 
-            { this.props.task.development_duration } hours
-          </p>
+            <p>
+              <strong>Testing: </strong> 
+              { this.props.task.testing_duration } hours
+            </p>
+
+            <p>
+              <strong>Development: </strong> 
+              { this.props.task.development_duration } hours
+            </p>              
+          </div>
         </div>
 
-        <hr />
-
-        <div style={{ border: "1px solid #000" }}>
-          <button onClick={ this.onRemove }>
-            Remove
-          </button>
+        <div className="media-right">
+          <button className="delete" onClick={ this.onRemove }></button>
         </div>
-      </div>
+      </article>
     )
   }
 }

@@ -7,21 +7,17 @@ export default class ProjectDetails extends React.Component {
 
   render() {
     return (
-      <div style={ { border: "1px solid #f00" } }>
-        <h4>Project Details</h4>
-
-        <div style={ { border: "1px solid #ff0" } }>
-          <div style={ { border: "1px solid #000" } }>
+      <article className="media">
+        <figure className="media-left">
+          <p className="image is-64x64">
             <img src="images/photo.gif" />
-            <h4>
-              Project Name <br />
-              <small>Project Description</small>
-            </h4>
-          </div>
+          </p>
+        </figure>
+        <div className="media-content">
+          <div className="content">
+            <h3 className="title is-3">Project Name</h3>
+            <p className="subtitle is-4">Project Description</p>
 
-          <hr />
-
-          <div style={ { border: "1px solid #333" } }>
             <p>
               <strong>Hours: </strong> 
               { this.props.getTotalHours() }
@@ -38,7 +34,7 @@ export default class ProjectDetails extends React.Component {
             </p>
           </div>
         </div>
-      </div>
+      </article> 
     )
   }
 }

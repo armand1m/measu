@@ -17,6 +17,7 @@ export default class TaskForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.clearState = this.clearState.bind(this)
   }
 
   handleChange(key, event) {
@@ -25,75 +26,74 @@ export default class TaskForm extends React.Component {
 
   handleSubmit() {
     this.props.onSubmit(this.state)
+    this.clearState()
+  }
+
+  clearState() {
     this.setState(initialState)
   }
 
   render() {
     return (
-      <div style={ { border: "1px solid #000" } } >
-        <h4>New Task</h4>
-
-        <label>
-          Title
+      <div className="container">
+        <label className="label">Title</label>
+        <p className="control">
           <input 
+            className="input"
             type='text' 
             title='title' 
             value={ this.state.title } 
             onChange={ this.handleChange.bind(this, 'title') } />
-        </label>
-
-        <br />
+        </p>
         
-        <label>
-          Description
+        <label className="label"> Description </label>
+        <p className="control">
           <input 
+            className="input"
             type='text' 
             title='description' 
             value={ this.state.description } 
             onChange={ this.handleChange.bind(this, 'description') } />
-        </label>
-
-        <br />
+        </p>
         
-        <label>
-          Hours for Analisis
+        <label className="label">Hours for Analisis</label>
+
+        <p className="control">
           <input 
+            className="input"
             type='number' 
             title='analisis_duration'
             value={ this.state.analisis_duration } 
             onChange={ this.handleChange.bind(this, 'analisis_duration') } />
-        </label>
+        </p>
 
-        <br />
-        
-        <label>
-          Hours for Testing
+        <label className="label">Hours for Testing</label>
+
+        <p className="control">
           <input 
+            className="input"
             type='number' 
             title='testing_duration'
             value={ this.state.testing_duration } 
             onChange={ this.handleChange.bind(this, 'testing_duration') } />
-        </label>
+        </p>
 
-        <br />
-        
-        <label>
-          Hours for Development
+        <label className="label">Hours for Development</label>
+
+        <p className="control">
           <input 
+            className="input"
             type='number'
             title='development_duration'
             value={ this.state.development_duration } 
             required={ true }
             onChange={ this.handleChange.bind(this, 'development_duration') } />
-        </label>
+        </p>
 
-        <br />
-
-        <div style={ { border: "1px solid #111 " }}>
-          <button onClick={ this.handleSubmit }>
-            Submit
-          </button>
-        </div>
+        <p className="control">
+          <button className="button is-primary is-outlined" onClick={ this.handleSubmit }>Submit</button>
+          <button className="button is-link" onClick={ this.clearState }>Cancel</button>
+        </p>
       </div>
     )
   }

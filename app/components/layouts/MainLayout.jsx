@@ -1,6 +1,4 @@
 import React from 'react';
-import TaskFormContainer from '../containers/TaskFormContainer.jsx';
-import ProjectDetailsContainer from '../containers/ProjectDetailsContainer.jsx';
 
 export default class MainLayout extends React.Component {
   constructor(props) {
@@ -24,26 +22,10 @@ export default class MainLayout extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ border: "1px solid #000" }}>
-          <div style={{ border: "1px solid #000" }}>
-            <button onClick={ this.toggleSidebar }>Toggle sidebar</button>
-          </div>
-
-          <div>
-            { this.props.children }
-          </div>
+        <div className="container">
+          { this.props.children }
         </div>
-
-        <div style={{ 
-          border: "1px solid #000",
-          display: (this.state.sidebar.pinned) ? "initial" : "none"
-        }}>
-          <div>
-            <ProjectDetailsContainer />
-            <TaskFormContainer />
-          </div>
-        </div>
-      </div>
+      </div>    
     );
   }
 }
