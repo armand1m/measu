@@ -1,5 +1,4 @@
 import React from 'react';
-import { List } from 'react-toolbox';
 
 export default class TaskList extends React.Component {
   constructor(props) {
@@ -8,9 +7,9 @@ export default class TaskList extends React.Component {
 
   render() {
     return (
-      <List>
+      <ul>
         { this.props.children }
-      </List>
+      </ul>
     )
   }
 }

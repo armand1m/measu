@@ -1,9 +1,4 @@
 import React from 'react'
-import { ListCheckbox, ListDivider, Card, CardText, CardActions, IconButton } from 'react-toolbox';
-import TaskCardTheme from '../../theme/TaskCard.scss';
-import TaskCardTextTheme from '../../theme/TaskCardText.scss';
-import TaskCardActionsTheme from '../../theme/TaskCardActions.scss';
-import TaskCardListCheckboxTheme from '../../theme/TaskCardListCheckbox.scss';
 
 export default class Task extends React.Component {
   constructor(props) {
@@ -15,14 +10,11 @@ export default class Task extends React.Component {
 
   render() {
     return (
-      <Card theme={ TaskCardTheme }>
-        <ListCheckbox
-          theme={ TaskCardListCheckboxTheme }
-          caption={ this.props.task.title }
-          checked={ this.props.task.done }
-          onChange={ this.onChange } />
+      <div style={ { border: "1px solid #f00" } }>
+        <h4>{ this.props.task.title }</h4>
+        <input type="checkbox" checked={ this.props.task.done } onChange={ this.onChange } />
         
-        <CardText theme={ TaskCardTextTheme } >
+        <div style={{ border: "1px solid #000" }}>
           <p>
             <strong>Description: </strong>
             { this.props.task.description }
@@ -44,17 +36,16 @@ export default class Task extends React.Component {
             <strong>Development: </strong> 
             { this.props.task.development_duration } hours
           </p>
-        </CardText>
+        </div>
 
-        <ListDivider />
+        <hr />
 
-        <CardActions theme={ TaskCardActionsTheme }>
-          <IconButton
-            primary
-            icon='delete'
-            onClick={ this.onRemove } />
-        </CardActions>
-      </Card>
+        <div style={{ border: "1px solid #000" }}>
+          <button onClick={ this.onRemove }>
+            Remove
+          </button>
+        </div>
+      </div>
     )
   }
 }

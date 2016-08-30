@@ -1,7 +1,4 @@
 import React from 'react';
-import { Card, List, ListItem, ListDivider } from 'react-toolbox'
-import ProjectDetailsCardTheme from '../../theme/ProjectDetailsCard';
-import ProjectDetailsListItemTheme from '../../theme/ProjectDetailsListItem';
 
 export default class ProjectDetails extends React.Component {
   constructor(props) {
@@ -10,34 +7,38 @@ export default class ProjectDetails extends React.Component {
 
   render() {
     return (
-      <Card theme={ ProjectDetailsCardTheme }>
+      <div style={ { border: "1px solid #f00" } }>
         <h4>Project Details</h4>
 
-        <List>
-          <ListItem
-            theme={ ProjectDetailsListItemTheme }
-            avatar='images/photo.gif'
-            caption='Project Name'
-            legend='Project Description' />
+        <div style={ { border: "1px solid #ff0" } }>
+          <div style={ { border: "1px solid #000" } }>
+            <img src="images/photo.gif" />
+            <h4>
+              Project Name <br />
+              <small>Project Description</small>
+            </h4>
+          </div>
 
-          <ListDivider />
+          <hr />
 
-          <p>
-            <strong>Hours: </strong> 
-            { this.props.getTotalHours() }
-          </p>
+          <div style={ { border: "1px solid #333" } }>
+            <p>
+              <strong>Hours: </strong> 
+              { this.props.getTotalHours() }
+            </p>
 
-          <p>
-            <strong>Value per Hour: </strong>
-            { this.props.valueUnit } { this.props.valuePerHour }
-          </p>
+            <p>
+              <strong>Value per Hour: </strong>
+              { this.props.valueUnit } { this.props.valuePerHour }
+            </p>
 
-          <p>
-            <strong>Result Value: </strong> 
-            { this.props.valueUnit } { this.props.getTotalValue() }
-          </p>
-        </List>
-      </Card>
+            <p>
+              <strong>Result Value: </strong> 
+              { this.props.valueUnit } { this.props.getTotalValue() }
+            </p>
+          </div>
+        </div>
+      </div>
     )
   }
 }

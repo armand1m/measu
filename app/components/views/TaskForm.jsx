@@ -1,7 +1,4 @@
 import React from 'react'
-import { Input, TimePicker, IconButton, Card, CardActions } from 'react-toolbox'
-import TaskFormCardTheme from '../../theme/TaskFormCard';
-import TaskFormCardActionsTheme from '../../theme/TaskFormCardActions';
 
 const initialState = {
   title: '',
@@ -22,8 +19,8 @@ export default class TaskForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(key, value) {
-    this.setState({...this.state, [key]: value});
+  handleChange(key, event) {
+    this.setState({...this.state, [key]: event.target.value});
   }
 
   handleSubmit() {
@@ -33,59 +30,71 @@ export default class TaskForm extends React.Component {
 
   render() {
     return (
-      <Card theme={ TaskFormCardTheme }>
+      <div style={ { border: "1px solid #000" } } >
         <h4>New Task</h4>
 
-        <Input 
-          type='text' 
-          label='Title' 
-          title='title' 
-          value={ this.state.title } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'title') } 
-          maxLength={ 25 } />
+        <label>
+          Title
+          <input 
+            type='text' 
+            title='title' 
+            value={ this.state.title } 
+            onChange={ this.handleChange.bind(this, 'title') } />
+        </label>
 
-        <Input 
-          type='text' 
-          label='Description' 
-          title='description' 
-          value={ this.state.description } 
-          required={ true }
-          multiline={ true }
-          onChange={ this.handleChange.bind(this, 'description') } 
-          maxLength={ 100 } />
+        <br />
+        
+        <label>
+          Description
+          <input 
+            type='text' 
+            title='description' 
+            value={ this.state.description } 
+            onChange={ this.handleChange.bind(this, 'description') } />
+        </label>
 
-        <Input 
-          type='number' 
-          label='Hours for Analisis' 
-          title='analisis_duration'
-          value={ this.state.analisis_duration } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'analisis_duration') } />
+        <br />
+        
+        <label>
+          Hours for Analisis
+          <input 
+            type='number' 
+            title='analisis_duration'
+            value={ this.state.analisis_duration } 
+            onChange={ this.handleChange.bind(this, 'analisis_duration') } />
+        </label>
 
-        <Input 
-          type='number' 
-          label='Hours for Testing' 
-          title='testing_duration'
-          value={ this.state.testing_duration } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'testing_duration') } />
+        <br />
+        
+        <label>
+          Hours for Testing
+          <input 
+            type='number' 
+            title='testing_duration'
+            value={ this.state.testing_duration } 
+            onChange={ this.handleChange.bind(this, 'testing_duration') } />
+        </label>
 
-        <Input 
-          type='number' 
-          label='Hours for Development' 
-          title='development_duration'
-          value={ this.state.development_duration } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'development_duration') } />
+        <br />
+        
+        <label>
+          Hours for Development
+          <input 
+            type='number'
+            title='development_duration'
+            value={ this.state.development_duration } 
+            required={ true }
+            onChange={ this.handleChange.bind(this, 'development_duration') } />
+        </label>
 
-        <CardActions theme={ TaskFormCardActionsTheme }>
-          <IconButton
-            primary
-            icon='add'
-            onClick={ this.handleSubmit } />
-        </CardActions>
-      </Card>
+        <br />
+
+        <div style={ { border: "1px solid #111 " }}>
+          <button onClick={ this.handleSubmit }>
+            Submit
+          </button>
+        </div>
+      </div>
     )
   }
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sample project",
   "scripts": {
-    "start": "npm run build && node server.production",
+    "start": "node server.production",
     "startd": "node server.development",
     "build": "cross-env NODE_ENV=production UV_THREADPOOL_SIZE=100 webpack --config ./webpack.prod"
   },
@@ -44,6 +44,7 @@
     "webpack-hot-middleware": "2.10.0"
   },
   "dependencies": {
+    "bulma": "^0.1.2",
     "express": "^4.14.0",
     "firebase": "^3.3.0",
     "http-server": "^0.9.0",

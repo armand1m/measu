@@ -9,4 +9,18 @@ var config = {
 
 firebase.initializeApp(config);
 
+function requireAuth(nextState, replace) {
+
+    if(null === firebase.auth().currentUser) {
+        replace({
+          pathname: '/login',
+          state: { nextPathname: nextState.location.pathname }
+        })
+    }
+}
+
 export default firebase
+
+export function isAuthenticated() {
+  return !!firebase.auth().currentUser
+}

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Layout, Panel, Sidebar, AppBar, IconButton } from 'react-toolbox';
 import TaskFormContainer from '../containers/TaskFormContainer.jsx';
 import ProjectDetailsContainer from '../containers/ProjectDetailsContainer.jsx';
-import MainLayoutPanelTheme from '../../theme/MainLayoutPanel.scss';
 
 export default class MainLayout extends React.Component {
   constructor(props) {
@@ -25,31 +23,27 @@ export default class MainLayout extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <Panel theme={ MainLayoutPanelTheme } >
-          <AppBar fixed={ true }>
-            <IconButton icon='subject' inverse={ true } onClick={ this.toggleSidebar } />
-          </AppBar>
+      <div>
+        <div style={{ border: "1px solid #000" }}>
+          <div style={{ border: "1px solid #000" }}>
+            <button onClick={ this.toggleSidebar }>Toggle sidebar</button>
+          </div>
 
-          <div className={ MainLayoutPanelTheme["panel__body"] }>
+          <div>
             { this.props.children }
           </div>
-        </Panel>
+        </div>
 
-        <Sidebar
-          width={ 6 }
-          scrollY={ true }
-          pinned={ this.state.sidebar.pinned } >
-          <div style={{ 
-            marginTop: "6.4rem",
-            overflowY: "scroll",
-            "WebkitOverflowScrolling": "touch"
-          }}>
+        <div style={{ 
+          border: "1px solid #000",
+          display: (this.state.sidebar.pinned) ? "initial" : "none"
+        }}>
+          <div>
             <ProjectDetailsContainer />
             <TaskFormContainer />
           </div>
-        </Sidebar>
-      </Layout>
+        </div>
+      </div>
     );
   }
 }

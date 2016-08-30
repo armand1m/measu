@@ -1,0 +1,35 @@
+{
+    "name": "measu",
+    "short_name": "measu",
+    "icons":  [{
+      "src": "images/photo-scr.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "images/photo-scr.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "images/photo-scr.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }, {
+      "src": "images/photo-scr.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "images/photo-scr.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    }, {
+      "src": "images/photo-scr.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "background_color": "#512da8",
+    "theme_color": "#512da8",
+    "start_url": "index.html"
+
+}
