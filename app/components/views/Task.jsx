@@ -1,20 +1,31 @@
 import React from 'react'
 
+const util = {
+  isHidden: {
+    display: "none"
+  }
+}
+
 export default class Task extends React.Component {
   constructor(props) {
     super(props)
 
     this.onChange = this.props.onChange.bind(this, this.props.task)
     this.onRemove = this.props.onRemove.bind(this, this.props.task)
+    this.onClick = this.props.onClick.bind(this)
   }
 
   render() {
     return (
       <article className="media">
         <div className="media-content">
-          <div className="content">
-            <h1 className="is-marginless">{ this.props.task.title }</h1>
+          <a 
+            className="title is-3 is-marginless" 
+            onClick={ this.onClick }>
+            { this.props.task.title }
+          </a>
 
+          <div className="content" style={ this.props.open ? {} : util.isHidden }>
             <br />
             <br />
 
@@ -22,6 +33,7 @@ export default class Task extends React.Component {
               <strong>Description: </strong>
               { this.props.task.description }
             </p>
+
 
             <p>
               <strong>Analisis: </strong> 
@@ -36,7 +48,7 @@ export default class Task extends React.Component {
             <p>
               <strong>Development: </strong> 
               { this.props.task.development_duration } hours
-            </p>              
+            </p>
           </div>
         </div>
 
