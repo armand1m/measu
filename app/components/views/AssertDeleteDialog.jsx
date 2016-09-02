@@ -1,25 +1,28 @@
 import React from 'react';
-import { Dialog } from 'react-toolbox';
 
 export default class AssertDeleteDialog extends React.Component {
-  get actions() {
-    return [
-      { label: "Hell no!", onClick: this.props.cancel },
-      { label: "Just do it.", onClick: this.props.delete }
-    ]
-  }
-
   render() {
+    let modalClassName = "modal " + ((this.props.active) ? "is-active" : "")
+
     return (
-      <Dialog
-        type='small'
-        actions={ this.actions }
-        active={ this.props.active }
-        onEscKeyDown={ this.props.cancel }
-        onOverlayClick={ this.props.cancel }
-        title='Are you sure?'>
-        <p>Are you sure you want to <b>delete</b> this record? </p>
-      </Dialog>
+      <div className={ modalClassName }>
+        <div className="modal-background" onClick={ this.props.cancel }></div>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title is-marginless">Hoop!</p>
+            <button className="delete" onClick={ this.props.cancel }></button>
+          </header>
+          
+          <section className="modal-card-body">
+            <p>Are you sure you want to <b>delete</b> this record? </p>
+          </section>
+
+          <footer className="modal-card-foot">
+            <a className="button is-danger is-outlined" onClick={ this.props.delete }>Go for it.</a>
+            <a className="button is-link" onClick={ this.props.cancel }>Hell no!</a>
+          </footer>
+        </div>
+      </div>
     )
   }
 }

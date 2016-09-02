@@ -11,6 +11,9 @@ class TaskContainer extends React.Component {
     this.state = {
       dialog: {
         active: false
+      },
+      description: {
+        isOpen: false
       }
     }
 
@@ -19,6 +22,7 @@ class TaskContainer extends React.Component {
     this.hideAssertDeleteDialog = this.hideAssertDeleteDialog.bind(this)
     this.onDeleteDialogCancel = this.onDeleteDialogCancel.bind(this)
     this.onDeleteDialogSuccess = this.onDeleteDialogSuccess.bind(this)
+    this.toggleDescription = this.toggleDescription.bind(this)
   }
 
   onChange() {
@@ -40,12 +44,25 @@ class TaskContainer extends React.Component {
   hideAssertDeleteDialog() {
     this.setState({ dialog: { active: false } })
   }
+
+  toggleDescription() {
+    let state = this.state
+
+    this.setState({ 
+      ...state,
+      description: {
+        isOpen: !this.state.description.isOpen
+      }
+    })
+  }
   
   render() {
     return (
-      <div>
+      <div className="box">
         <Task 
           task={ this.props.task } 
+          open={ this.state.description.isOpen }
+          onClick={ this.toggleDescription }
           onChange={ this.onChange }
           onRemove={ this.showAssertDeleteDialog } />
 

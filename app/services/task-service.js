@@ -4,16 +4,7 @@ const TASKS_REFERENCE = 'tasks/'
 const getTaskKeyReference = (key) => `${TASKS_REFERENCE}${key}`
 
 export function createTask(task) {
-  var key = 
-    firebase
-    .database()
-    .ref('tasks/')
-    .push()
-    .key
-
-  return firebase
-  .database()
-  .ref(getTaskKeyReference(key))
+  return getTaskReference(createKey())
   .set(Object.assign(
     { done: false }
     , task
@@ -23,6 +14,14 @@ export function createTask(task) {
       development_duration: +task.development_duration
     }
   ))
+}
+
+export function createKey() {
+  return firebase
+    .database()
+    .ref(TASKS_REFERENCE)
+    .push()
+    .key
 }
 
 export function getTasksReference() {
@@ -43,7 +42,7 @@ export function deleteTask(key) {
 
 export function toggleTask(key, task) {
   let done = !task.done
-  
+
   return getTaskReference(key).update({ done })
 }
 

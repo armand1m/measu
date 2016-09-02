@@ -1,7 +1,4 @@
 import React from 'react'
-import { Input, TimePicker, IconButton, Card, CardActions } from 'react-toolbox'
-import TaskFormCardTheme from '../../theme/TaskFormCard';
-import TaskFormCardActionsTheme from '../../theme/TaskFormCardActions';
 
 const initialState = {
   title: '',
@@ -20,72 +17,84 @@ export default class TaskForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.clearState = this.clearState.bind(this)
   }
 
-  handleChange(key, value) {
-    this.setState({...this.state, [key]: value});
+  handleChange(key, event) {
+    this.setState({...this.state, [key]: event.target.value});
   }
 
   handleSubmit() {
     this.props.onSubmit(this.state)
+    this.clearState()
+  }
+
+  clearState() {
     this.setState(initialState)
   }
 
   render() {
     return (
-      <Card theme={ TaskFormCardTheme }>
-        <h4>New Task</h4>
+      <div className="container">
+        <label className="label">Title</label>
+        <p className="control">
+          <input 
+            className="input"
+            type='text' 
+            title='title' 
+            value={ this.state.title } 
+            onChange={ this.handleChange.bind(this, 'title') } />
+        </p>
+        
+        <label className="label"> Description </label>
+        <p className="control">
+          <input 
+            className="input"
+            type='text' 
+            title='description' 
+            value={ this.state.description } 
+            onChange={ this.handleChange.bind(this, 'description') } />
+        </p>
+        
+        <label className="label">Hours for Analisis</label>
 
-        <Input 
-          type='text' 
-          label='Title' 
-          title='title' 
-          value={ this.state.title } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'title') } 
-          maxLength={ 25 } />
+        <p className="control">
+          <input 
+            className="input"
+            type='number' 
+            title='analisis_duration'
+            value={ this.state.analisis_duration } 
+            onChange={ this.handleChange.bind(this, 'analisis_duration') } />
+        </p>
 
-        <Input 
-          type='text' 
-          label='Description' 
-          title='description' 
-          value={ this.state.description } 
-          required={ true }
-          multiline={ true }
-          onChange={ this.handleChange.bind(this, 'description') } 
-          maxLength={ 100 } />
+        <label className="label">Hours for Testing</label>
 
-        <Input 
-          type='number' 
-          label='Hours for Analisis' 
-          title='analisis_duration'
-          value={ this.state.analisis_duration } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'analisis_duration') } />
+        <p className="control">
+          <input 
+            className="input"
+            type='number' 
+            title='testing_duration'
+            value={ this.state.testing_duration } 
+            onChange={ this.handleChange.bind(this, 'testing_duration') } />
+        </p>
 
-        <Input 
-          type='number' 
-          label='Hours for Testing' 
-          title='testing_duration'
-          value={ this.state.testing_duration } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'testing_duration') } />
+        <label className="label">Hours for Development</label>
 
-        <Input 
-          type='number' 
-          label='Hours for Development' 
-          title='development_duration'
-          value={ this.state.development_duration } 
-          required={ true }
-          onChange={ this.handleChange.bind(this, 'development_duration') } />
+        <p className="control">
+          <input 
+            className="input"
+            type='number'
+            title='development_duration'
+            value={ this.state.development_duration } 
+            required={ true }
+            onChange={ this.handleChange.bind(this, 'development_duration') } />
+        </p>
 
-        <CardActions theme={ TaskFormCardActionsTheme }>
-          <IconButton
-            primary
-            icon='add'
-            onClick={ this.handleSubmit } />
-        </CardActions>
-      </Card>
+        <p className="control">
+          <button className="button is-primary is-outlined" onClick={ this.handleSubmit }>Submit</button>
+          <button className="button is-link" onClick={ this.clearState }>Cancel</button>
+        </p>
+      </div>
     )
   }
 }

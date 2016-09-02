@@ -1,9 +1,10 @@
 import React from 'react'
-import { ListCheckbox, ListDivider, Card, CardText, CardActions, IconButton } from 'react-toolbox';
-import TaskCardTheme from '../../theme/TaskCard.scss';
-import TaskCardTextTheme from '../../theme/TaskCardText.scss';
-import TaskCardActionsTheme from '../../theme/TaskCardActions.scss';
-import TaskCardListCheckboxTheme from '../../theme/TaskCardListCheckbox.scss';
+
+const util = {
+  isHidden: {
+    display: "none"
+  }
+}
 
 export default class Task extends React.Component {
   constructor(props) {
@@ -11,50 +12,50 @@ export default class Task extends React.Component {
 
     this.onChange = this.props.onChange.bind(this, this.props.task)
     this.onRemove = this.props.onRemove.bind(this, this.props.task)
+    this.onClick = this.props.onClick.bind(this)
   }
 
   render() {
     return (
-      <Card theme={ TaskCardTheme }>
-        <ListCheckbox
-          theme={ TaskCardListCheckboxTheme }
-          caption={ this.props.task.title }
-          checked={ this.props.task.done }
-          onChange={ this.onChange } />
-        
-        <CardText theme={ TaskCardTextTheme } >
-          <p>
-            <strong>Description: </strong>
-            { this.props.task.description }
-          </p>
+      <article className="media">
+        <div className="media-content">
+          <a 
+            className="title is-3 is-marginless" 
+            onClick={ this.onClick }>
+            { this.props.task.title }
+          </a>
 
-          <br />
+          <div className="content" style={ this.props.open ? {} : util.isHidden }>
+            <br />
+            <br />
 
-          <p>
-            <strong>Analisis: </strong> 
-            { this.props.task.analisis_duration } hours
-          </p>
+            <p>
+              <strong>Description: </strong>
+              { this.props.task.description }
+            </p>
 
-          <p>
-            <strong>Testing: </strong> 
-            { this.props.task.testing_duration } hours
-          </p>
 
-          <p>
-            <strong>Development: </strong> 
-            { this.props.task.development_duration } hours
-          </p>
-        </CardText>
+            <p>
+              <strong>Analisis: </strong> 
+              { this.props.task.analisis_duration } hours
+            </p>
 
-        <ListDivider />
+            <p>
+              <strong>Testing: </strong> 
+              { this.props.task.testing_duration } hours
+            </p>
 
-        <CardActions theme={ TaskCardActionsTheme }>
-          <IconButton
-            primary
-            icon='delete'
-            onClick={ this.onRemove } />
-        </CardActions>
-      </Card>
+            <p>
+              <strong>Development: </strong> 
+              { this.props.task.development_duration } hours
+            </p>
+          </div>
+        </div>
+
+        <div className="media-right">
+          <button className="delete" onClick={ this.onRemove }></button>
+        </div>
+      </article>
     )
   }
 }

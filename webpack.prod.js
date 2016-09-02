@@ -1,5 +1,3 @@
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -13,7 +11,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.scss', '.css', '.js', '.jsx', '.json'],
+    extensions: ['', '.js', '.jsx', '.json'],
     modulesDirectories: [
       path.resolve(__dirname, './node_modules')
     ]  
@@ -25,19 +23,14 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel',
         query: { presets: ['es2015', 'stage-0', 'react'] }
-      }, {
-        test: /(\.scss|\.css)$/,
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
+      },
+      {
+        test: /(\.scss|\.sass)$/,
+        loaders: ["style", "css", "sass"]
       }
-    ],
-  },
-  postcss: [autoprefixer],
-  sassLoader: {
-    data: '@import "theme/_config.scss";',
-    includePaths: [path.resolve(__dirname, './app')]
+    ]
   },
   plugins: [
-    new ExtractTextPlugin('app.css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
