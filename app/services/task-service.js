@@ -10,7 +10,7 @@ export function createTask(task) {
     , task
     , {
       testing_duration: +task.testing_duration,
-      analisis_duration: +task.analisis_duration,
+      analysis_duration: +task.analysis_duration,
       development_duration: +task.development_duration
     }
   ))
@@ -47,7 +47,7 @@ export function toggleTask(key, task) {
 }
 
 export function getTaskTotalHours(task) {
-  return task.analisis_duration 
+  return task.analysis_duration 
         + task.testing_duration
         + task.development_duration
 }

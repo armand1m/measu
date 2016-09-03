@@ -19,25 +19,21 @@ export default class Task extends React.Component {
     return (
       <article className="media">
         <div className="media-content">
-          <a 
-            className="title is-3 is-marginless" 
-            onClick={ this.onClick }>
+          <button className="title is-3 is-marginless non-styled-button" onClick={ this.onClick }>
             { this.props.task.title }
-          </a>
+          </button>
 
           <div className="content" style={ this.props.open ? {} : util.isHidden }>
-            <br />
-            <br />
+            <hr style={ { margin: "1em 0", borderColor: "#eee" } } />
 
             <p>
               <strong>Description: </strong>
               { this.props.task.description }
             </p>
 
-
             <p>
-              <strong>Analisis: </strong> 
-              { this.props.task.analisis_duration } hours
+              <strong>Analysis: </strong> 
+              { this.props.task.analysis_duration } hours
             </p>
 
             <p>

@@ -5,23 +5,11 @@ import { createTask } from '../../services/task-service';
 import { addTaskSuccess } from '../../actions/task-actions';
 
 class TaskFormContainer extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.onKeyDown = this.onKeyDown.bind(this)
-  }
-
-  onKeyDown(e) {
-    console.log(e)
-  }
-
   render() {
     return (
-      <TaskForm 
-        onKeyDown={ this.onKeyDown }
-        onSubmit={ createTask } />
+      <TaskForm ref={component => this._taskForm = component } onSubmit={ createTask } />
     )
   }
 }
 
-export default connect()(TaskFormContainer);
+export default TaskFormContainer;

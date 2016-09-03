@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { HotKeys } from 'react-hotkeys';
 import TaskListContainer from '../containers/TaskListContainer.jsx';
 import TaskFormContainer from '../containers/TaskFormContainer.jsx';
 import ProjectDetailsContainer from '../containers/ProjectDetailsContainer.jsx';
@@ -15,40 +17,52 @@ const titleStyle = {
   justifyContent: "center"
 }
 
-export default class Home extends React.Component {
+const keyMap = {  
+  'FocusTaskTitleInput': 'ctrl+n'
+}
+
+class Home extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.onFocusTaskTitleInput = this.onFocusTaskTitleInput.bind(this)
+  }
+
+  onFocusTaskTitleInput() {
+    let input = this._taskFormContainer._taskForm._taskTitleInput
+
+    ReactDOM.findDOMNode(input).focus()
+  }
+
   render() {
+    const handlers = {
+      'FocusTaskTitleInput': this.onFocusTaskTitleInput  
+    }
+
     return (
-      <div className="content">
-        <div className="content has-text-centered">
-          <div className="title is-1" style={ titleStyle }>
-            <img src="images/photo.gif" style={ imageStyle }/>
-            measu.
-          </div>
-          <p className="subtitle is-3">
-            a project measurement tool by <a href="http://fluxor.org" target="_blank">Fluxor</a>.
-          </p>
-        </div>
+      <HotKeys style={ { outline: "none" } } keyMap={ keyMap } handlers={ handlers }>
+        <div className="container">
+          <div className="content columns">
+            <div className="column is-8">
+              <TaskListContainer />
+            </div>
 
-        <hr className="is-marginless" />
+            <div className="column is-4">
+              <ul> 
+                <div className="box">
+                  <ProjectDetailsContainer />
+                </div>
 
-        <div className="columns">
-          <div className="column is-two-thirds">
-            <TaskListContainer />
-          </div>
-
-          <div className="column">
-            <ul> 
-              <div className="box">
-                <ProjectDetailsContainer />
-              </div>
-
-              <div className="box">
-                <TaskFormContainer />
-              </div>
-            </ul>
+                <div className="box">
+                  <TaskFormContainer ref={component => this._taskFormContainer = component} />
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </HotKeys>
     );
   }
 }
+
+export default Home

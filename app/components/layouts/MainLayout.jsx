@@ -1,4 +1,6 @@
 import React from 'react';
+import MainHeader from '../views/MainHeader.jsx';
+import MainFooter from "../views/MainFooter.jsx"
 
 export default class MainLayout extends React.Component {
   constructor(props) {
@@ -23,7 +25,9 @@ export default class MainLayout extends React.Component {
     return (
       <div>
         <div className="container">
-          { this.props.children }
+          <MainHeader />
+            { this.props.children }
+          <MainFooter />
         </div>
       </div>    
     );

@@ -10,13 +10,12 @@ var config = {
 firebase.initializeApp(config);
 
 function requireAuth(nextState, replace) {
-
-    if(null === firebase.auth().currentUser) {
-        replace({
-          pathname: '/login',
-          state: { nextPathname: nextState.location.pathname }
-        })
-    }
+  if(null === firebase.auth().currentUser) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
 }
 
 export default firebase

@@ -1,30 +1,30 @@
 import * as types from './action-types'
 
 
-export function getTasksSuccess(tasks) {
+export function setTasks(tasks) {
   return { 
-    type: types.GET_TASKS_SUCCESS, 
+    type: types.SET_TASKS, 
     payload: { tasks } 
   }
 }
 
-export function addTaskSuccess(task) {
+export function addTask(key, value) {
   return { 
-    type: types.ADD_TASK_SUCCESS, 
-    payload: { task } 
+    type: types.ADD_TASK, 
+    payload: { key, value } 
   }
 }
 
-export function removeTaskSuccess(key) {
+export function removeTask(key) {
   return {
-    type: types.REMOVE_TASK_SUCCESS,
+    type: types.REMOVE_TASK,
     payload: { key }
   }
 }
 
-export function taskChanged(key, value) {
+export function changeTask(key, value) {
   return {
-    type: types.TASK_CHANGED,
+    type: types.CHANGE_TASK,
     payload: { key, value }
   }
 }

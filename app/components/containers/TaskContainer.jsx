@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import { connect } from 'react-redux';
 import Task from '../views/Task.jsx';
 import AssertDeleteDialog from '../views/AssertDeleteDialog.jsx';
@@ -39,6 +41,7 @@ class TaskContainer extends React.Component {
 
   showAssertDeleteDialog() {
     this.setState({ dialog: { active: true } })
+    ReactDOM.findDOMNode(this._assertDeleteDialog).focus()
   }
 
   hideAssertDeleteDialog() {
@@ -67,6 +70,7 @@ class TaskContainer extends React.Component {
           onRemove={ this.showAssertDeleteDialog } />
 
         <AssertDeleteDialog
+          ref={component => this._assertDeleteDialog = component}
           active={ this.state.dialog.active }
           cancel={ this.onDeleteDialogCancel }
           delete={ this.onDeleteDialogSuccess } />

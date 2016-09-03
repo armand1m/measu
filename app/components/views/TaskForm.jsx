@@ -3,10 +3,9 @@ import React from 'react'
 const initialState = {
   title: '',
   description: '',
-  analisis_duration: 0,
+  analysis_duration: 0,
   testing_duration: 0,
-  development_duration: 0,
-  done: false
+  development_duration: 0
 }
 
 export default class TaskForm extends React.Component {
@@ -39,6 +38,7 @@ export default class TaskForm extends React.Component {
         <label className="label">Title</label>
         <p className="control">
           <input 
+            ref={component => this._taskTitleInput = component}
             className="input"
             type='text' 
             title='title' 
@@ -56,15 +56,15 @@ export default class TaskForm extends React.Component {
             onChange={ this.handleChange.bind(this, 'description') } />
         </p>
         
-        <label className="label">Hours for Analisis</label>
+        <label className="label">Hours for Analysis</label>
 
         <p className="control">
           <input 
             className="input"
             type='number' 
-            title='analisis_duration'
-            value={ this.state.analisis_duration } 
-            onChange={ this.handleChange.bind(this, 'analisis_duration') } />
+            title='analysis_duration'
+            value={ this.state.analysis_duration } 
+            onChange={ this.handleChange.bind(this, 'analysis_duration') } />
         </p>
 
         <label className="label">Hours for Testing</label>
