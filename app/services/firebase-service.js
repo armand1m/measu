@@ -1,25 +1,74 @@
+/**
+  {
+    apiKey: "...",
+    authDomain: "<name>.firebaseapp.com",
+    databaseURL: "https://<name>.firebaseio.com",
+    storageBucket: "<name>.appspot.com",
+  }
+ */
+import config from '../firebase-config.js';
 import firebase from 'firebase';
-
-var config = {
-  apiKey: "AIzaSyAdMiHEaePA90FY_5P4VMjMrotQDAW0vHU",
-  authDomain: "measu-a46f5.firebaseapp.com",
-  databaseURL: "https://measu-a46f5.firebaseio.com",
-  storageBucket: "measu-a46f5.appspot.com",
-};
 
 firebase.initializeApp(config);
 
-function requireAuth(nextState, replace) {
-  if(null === firebase.auth().currentUser) {
-    replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
-}
-
 export default firebase
 
-export function isAuthenticated() {
-  return !!firebase.auth().currentUser
+export class FirebaseModel {
+  getReferenceUrl(key) {
+    if (key) {
+      return `${this.reference}/${key}`
+    }
+
+    return `${this.reference}/`
+  }
+
+  get default() {
+    return {}
+  }
+
+  converter(data) {
+    return {}
+  }
+
+  constructor() {
+    this.reference = "model"
+  }
+
+  createKey() {
+    return firebase
+      .database()
+      .ref(this.getReferenceUrl())
+      .push()
+      .key
+  }
+
+  getReference(key) {
+    return firebase
+      .database()
+      .ref(this.getReferenceUrl(key ? key : null))
+  }
+
+  delete(key) {
+    return this.getReference(key).delete()
+  }
+
+  update(key, data) {
+    return this.getReference(key).update(data)
+  }
+
+  set(data) {
+    return this.getReference().set(data)
+  }
+
+  create(data) {
+    return this
+      .getReference(this.createKey())
+      .set(
+        Object.assign(
+          this.default, 
+          data, 
+          this.converter(data)
+        )
+      )
+  }
 }
