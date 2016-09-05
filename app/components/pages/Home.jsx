@@ -41,7 +41,7 @@ class Home extends React.Component {
 
     return (
       <HotKeys style={ { outline: "none" } } keyMap={ keyMap } handlers={ handlers }>
-        <div className="container">
+        <div className="container is-fluid">
           <div className="content columns">
             <div className="column is-8">
               <TaskListContainer />
