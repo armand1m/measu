@@ -13,6 +13,13 @@ export default class Task extends React.Component {
     this.onChange = this.props.onChange.bind(this, this.props.task)
     this.onRemove = this.props.onRemove.bind(this, this.props.task)
     this.onClick = this.props.onClick.bind(this)
+    this.getTaskTotal = this.getTaskTotal.bind(this)
+  }
+
+  getTaskTotal() {
+    return this.props.task.analysis_duration 
+      + this.props.task.testing_duration
+      + this.props.task.development_duration
   }
 
   render() {
@@ -20,7 +27,7 @@ export default class Task extends React.Component {
       <article className="media">
         <div className="media-content">
           <button className="title is-3 is-marginless non-styled-button" onClick={ this.onClick }>
-            { this.props.task.title }
+            { this.props.task.title } - { this.getTaskTotal() } hours
           </button>
 
           <div className="content" style={ this.props.open ? {} : util.isHidden }>

@@ -34,6 +34,7 @@ export default class AssertDeleteDialog extends React.Component {
               <a className="button is-link" onClick={ this.props.cancel }>Hell no!</a>
             </footer>
           </div>
+          <button class="modal-close"></button>
         </div>
       </HotKeys>
     )

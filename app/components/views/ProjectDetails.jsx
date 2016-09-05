@@ -2,50 +2,46 @@ import React from 'react';
 import NonBorderInput from './NonBorderInput';
 
 export default class ProjectDetails extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <article className="content">
         <h3 className="title is-3">
-          <NonBorderInput placeholder="Project Name"/>
+          <NonBorderInput 
+            onChange={ this.props.onFieldChange.bind(this, 'name') }
+            value={ this.props.project.name }
+            placeholder="Project Name" />
         </h3>
 
         <p className="subtitle is-4">
-          <NonBorderInput placeholder="Project Description"/>
+          <NonBorderInput 
+            onChange={ this.props.onFieldChange.bind(this, 'description') }
+            value={ this.props.project.description }
+            placeholder="Project Description"/>
         </p>
 
-        <nav className="level is-hidden-touch">
-          <div className="level-item has-text-centered">
+        <div className="columns has-text-centered">
+          <div className="column">
             <p className="heading">Hours</p>
             <p className="title">{ this.props.getTotalHours() }</p>
           </div>
-          <div className="level-item has-text-centered">
+        
+          <div className="column">
             <p className="heading">Value per Hour</p>
-            <p className="title">{ this.props.valueUnit } { this.props.valuePerHour }</p>
+            <NonBorderInput 
+              className="title"
+              style={ { textAlign: "center" } }
+              onChange={ this.props.onFieldChange.bind(this, 'valuePerHour') }
+              value={ this.props.project.valuePerHour }
+              placeholder="0"/>
           </div>
-          <div className="level-item has-text-centered">
-            <p className="heading">Total Cost</p>
-            <p className="title">{ this.props.valueUnit } { this.props.getTotalValue() }</p>
-          </div>
-        </nav>
+        </div>
 
-        <nav className="level is-hidden-desktop">
-          <div className="level-item">
-            <p className="heading">Hours</p>
-            <p className="title">{ this.props.getTotalHours() }</p>
-          </div>
-          <div className="level-item">
-            <p className="heading">Value per Hour</p>
-            <p className="title">{ this.props.valueUnit } { this.props.valuePerHour }</p>
-          </div>
-          <div className="level-item">
+        <div className="columns has-text-centered">
+          <div className="column">
             <p className="heading">Total Cost</p>
             <p className="title">{ this.props.valueUnit } { this.props.getTotalValue() }</p>
           </div>
-        </nav>
+        </div>
       </article> 
     )
   }
