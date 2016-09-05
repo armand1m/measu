@@ -23,13 +23,11 @@ export default class MainLayout extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="container">
-          <MainHeader />
-            { this.props.children }
-          <MainFooter />
-        </div>
-      </div>    
+      <div className="container is-fluid">
+        <MainHeader />
+          { this.props.children }
+        <MainFooter />
+      </div>
     );
   }
 }
