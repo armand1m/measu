@@ -1,50 +1,33 @@
-import firebase from './firebase-service'
+import firebase, { FirebaseModel } from './firebase-service'
 
-const TASKS_REFERENCE = 'tasks/'
-const getTaskKeyReference = (key) => `${TASKS_REFERENCE}${key}`
+class Task extends FirebaseModel {
+  get default() {
+    return {
+      title: '',
+      description: '',
+      analysis_duration: 0,
+      testing_duration: 0,
+      development_duration: 0,
+      discounted: false
+    }
+  }
 
-export function createTask(task) {
-  return getTaskReference(createKey())
-  .set(Object.assign(
-    { done: false }
-    , task
-    , {
+  converter(task) {
+    return {
+      discounted: !!task.discounted,
       testing_duration: +task.testing_duration,
       analysis_duration: +task.analysis_duration,
       development_duration: +task.development_duration
     }
-  ))
+  }
+
+  constructor() {
+    super()
+    this.reference = "tasks"
+  }
 }
 
-export function createKey() {
-  return firebase
-    .database()
-    .ref(TASKS_REFERENCE)
-    .push()
-    .key
-}
-
-export function getTasksReference() {
-  return firebase
-    .database()
-    .ref(TASKS_REFERENCE)
-}
-
-export function getTaskReference(key) {
-  return firebase
-    .database()
-    .ref(getTaskKeyReference(key))
-}
-
-export function deleteTask(key) {
-  return getTaskReference(key).remove()
-}
-
-export function toggleTask(key, task) {
-  let done = !task.done
-
-  return getTaskReference(key).update({ done })
-}
+const TaskService = new Task()
 
 export function getTaskTotalHours(task) {
   return task.analysis_duration 
@@ -53,5 +36,10 @@ export function getTaskTotalHours(task) {
 }
 
 export function getTaskTotalValue(valuePerHour, task) {
+  if (task.discounted)
+    return 0
+
   return getTaskTotalHours(task) * valuePerHour
 }
+
+export default TaskService

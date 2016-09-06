@@ -31,7 +31,7 @@ export class FirebaseModel {
   }
 
   constructor() {
-    this.reference = "model"
+    this.reference = ""
   }
 
   createKey() {
@@ -49,7 +49,7 @@ export class FirebaseModel {
   }
 
   delete(key) {
-    return this.getReference(key).delete()
+    return this.getReference(key).remove()
   }
 
   update(key, data) {
