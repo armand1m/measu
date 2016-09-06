@@ -3,6 +3,12 @@ import React from 'react'
 const util = {
   isHidden: {
     display: "none"
+  },
+  isDanger: {
+    color: "#ed6c63"
+  },
+  isSafe: {
+    color: "#97cd76"
   }
 }
 
@@ -10,24 +16,21 @@ export default class Task extends React.Component {
   constructor(props) {
     super(props)
 
-    this.onChange = this.props.onChange.bind(this, this.props.task)
     this.onRemove = this.props.onRemove.bind(this, this.props.task)
     this.onClick = this.props.onClick.bind(this)
-    this.getTaskTotal = this.getTaskTotal.bind(this)
-  }
-
-  getTaskTotal() {
-    return this.props.task.analysis_duration 
-      + this.props.task.testing_duration
-      + this.props.task.development_duration
   }
 
   render() {
+    var headerStyle = this.props.task.discounted ? util.isDanger : null
+
     return (
       <article className="media">
         <div className="media-content">
-          <button className="title is-3 is-marginless non-styled-button" onClick={ this.onClick }>
-            { this.props.task.title } - { this.getTaskTotal() } hours
+          <button 
+            className="title is-3 is-marginless non-styled-button" 
+            style={ headerStyle } 
+            onClick={ this.onClick }>
+            { this.props.task.title }
           </button>
 
           <div className="content" style={ this.props.open ? {} : util.isHidden }>
@@ -36,6 +39,14 @@ export default class Task extends React.Component {
             <p>
               <strong>Description: </strong>
               { this.props.task.description }
+            </p>
+
+            <label className="label">Discounted?</label>
+            <p className="control">
+              <input 
+                onChange={ this.props.onFieldChange.bind(this, 'discounted') }
+                checked={ this.props.task.discounted }
+                type="checkbox" />
             </p>
 
             <p>

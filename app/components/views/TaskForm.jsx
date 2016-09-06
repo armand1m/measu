@@ -1,12 +1,7 @@
 import React from 'react'
+import TaskService from '../../services/task-service';
 
-const initialState = {
-  title: '',
-  description: '',
-  analysis_duration: 0,
-  testing_duration: 0,
-  development_duration: 0
-}
+const initialState = TaskService.default
 
 export default class TaskForm extends React.Component {
   constructor(props) {
@@ -20,7 +15,14 @@ export default class TaskForm extends React.Component {
   }
 
   handleChange(key, event) {
-    this.setState({...this.state, [key]: event.target.value});
+    switch(key) {
+      case "discounted":
+        this.setState({ ...this.state, [key]: event.target.checked });
+        break;
+
+      default:
+        this.setState({ ...this.state, [key]: event.target.value });
+    }
   }
 
   handleSubmit() {
@@ -46,7 +48,7 @@ export default class TaskForm extends React.Component {
             onChange={ this.handleChange.bind(this, 'title') } />
         </p>
         
-        <label className="label"> Description </label>
+        <label className="label">Description</label>
         <p className="control">
           <input 
             className="input"
@@ -55,9 +57,16 @@ export default class TaskForm extends React.Component {
             value={ this.state.description } 
             onChange={ this.handleChange.bind(this, 'description') } />
         </p>
+
+        <label className="label">Discounted?</label>
+        <p className="control">
+          <input 
+            onChange={ this.handleChange.bind(this, 'discounted') }
+            checked={ this.state.discounted }
+            type="checkbox" />
+        </p>
         
         <label className="label">Hours for Analysis</label>
-
         <p className="control">
           <input 
             className="input"
@@ -68,7 +77,6 @@ export default class TaskForm extends React.Component {
         </p>
 
         <label className="label">Hours for Testing</label>
-
         <p className="control">
           <input 
             className="input"
@@ -79,7 +87,6 @@ export default class TaskForm extends React.Component {
         </p>
 
         <label className="label">Hours for Development</label>
-
         <p className="control">
           <input 
             className="input"

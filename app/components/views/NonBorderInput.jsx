@@ -12,6 +12,7 @@ const style = {
 export default class NonBorderInput extends React.Component {
   render() {
     var styleObj = Object.assign({}, style, this.props.style)
+
     return (
       <Textarea 
         { ...this.props }

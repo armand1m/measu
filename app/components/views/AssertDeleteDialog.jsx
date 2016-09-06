@@ -22,7 +22,6 @@ export default class AssertDeleteDialog extends React.Component {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title is-marginless">Hoop!</p>
-              <button className="delete" onClick={ this.props.cancel }></button>
             </header>
             
             <section className="modal-card-body">
@@ -34,7 +33,7 @@ export default class AssertDeleteDialog extends React.Component {
               <a className="button is-link" onClick={ this.props.cancel }>Hell no!</a>
             </footer>
           </div>
-          <button class="modal-close"></button>
+          <button className="modal-close"  onClick={ this.props.cancel }></button>
         </div>
       </HotKeys>
     )
