@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TaskContainer from './TaskContainer.jsx';
 import TaskList from '../views/TaskList.jsx';
 import { setTasks, removeTask, addTask, changeTask } from '../../actions/task-actions';
-import { getTasksReference } from '../../services/task-service';
+import TaskService from '../../services/task-service';
 
 class TaskListContainer extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class TaskListContainer extends React.Component {
   }
 
   componentDidMount() {
-    var tasksRef = getTasksReference()
+    var tasksRef = TaskService.getReference()
 
     tasksRef.on('child_added', snapshot => {
       this.props.dispatch(addTask(snapshot.key, snapshot.val()))

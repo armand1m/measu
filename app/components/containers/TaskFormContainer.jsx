@@ -1,12 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import TaskForm from '../views/TaskForm.jsx';
-import { createTask } from '../../services/task-service';
+import TaskService from '../../services/task-service';
 
 class TaskFormContainer extends React.Component {
+  onSubmit(data) {
+    TaskService.create(data)
+  }
+
   render() {
     return (
-      <TaskForm ref={component => this._taskForm = component } onSubmit={ createTask } />
+      <TaskForm ref={component => this._taskForm = component } onSubmit={ this.onSubmit } />
     )
   }
 }
