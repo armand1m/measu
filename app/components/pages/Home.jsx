@@ -17,7 +17,7 @@ const titleStyle = {
   justifyContent: "center"
 }
 
-const keyMap = {  
+const keyMap = {
   'FocusTaskTitleInput': 'ctrl+n'
 }
 
@@ -36,19 +36,23 @@ class Home extends React.Component {
 
   render() {
     const handlers = {
-      'FocusTaskTitleInput': this.onFocusTaskTitleInput  
+      'FocusTaskTitleInput': this.onFocusTaskTitleInput
     }
 
     return (
-      <HotKeys style={ { outline: "none" } } keyMap={ keyMap } handlers={ handlers }>
-        <div className="container is-fluid">
+      <HotKeys
+        className="container is-fluid"
+        style={ { outline: "none" } }
+        keyMap={ keyMap }
+        handlers={ handlers }>
+        <div >
           <div className="content columns">
             <div className="column is-8">
               <TaskListContainer />
             </div>
 
             <div className="column is-4">
-              <ul> 
+              <ul>
                 <div className="box">
                   <ProjectDetailsContainer />
                 </div>
