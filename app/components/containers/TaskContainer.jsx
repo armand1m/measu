@@ -4,6 +4,9 @@ import Task from '../views/Task.jsx';
 import AssertDeleteDialog from '../views/AssertDeleteDialog.jsx';
 import TaskService from '../../services/task-service';
 
+function _isNumber(number) {
+  return !isNaN(parseFloat(number)) && isFinite(number);
+}
 class TaskContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -12,8 +15,11 @@ class TaskContainer extends React.Component {
       dialog: {
         active: false
       },
+      editMode: {
+        active: false
+      },
       description: {
-        isOpen: false
+        open: false
       }
     }
 
@@ -23,18 +29,21 @@ class TaskContainer extends React.Component {
     this.onDeleteDialogCancel = this.onDeleteDialogCancel.bind(this)
     this.onDeleteDialogSuccess = this.onDeleteDialogSuccess.bind(this)
     this.toggleDescription = this.toggleDescription.bind(this)
+    this.toggleEditMode = this.toggleEditMode.bind(this)
   }
 
   onFieldChange(key, e) {
     var data = {}
-
+    console.log(e.target)
     switch(key) {
       case "discounted":
         data[key] = e.target.checked
         break;
 
       default:
-        data[key] = e.target.value
+        let { value } = e.target
+
+        data[key] = (!_isNumber(value) && e.target instanceof HTMLTextAreaElement) ? value : Number(value)
     }
 
     TaskService.update(this.props.taskKey, data)
@@ -58,23 +67,30 @@ class TaskContainer extends React.Component {
   }
 
   toggleDescription() {
-    let state = this.state
-
-    this.setState({ 
-      ...state,
+    this.setState({
       description: {
-        isOpen: !this.state.description.isOpen
+        open: !this.state.description.open
       }
     })
   }
-  
+
+  toggleEditMode() {
+    this.setState({
+      editMode: {
+        active: !this.state.editMode.active
+      }
+    })
+  }
+
   render() {
     return (
       <div className="box">
         <Task 
-          task={ this.props.task } 
-          open={ this.state.description.isOpen }
-          onClick={ this.toggleDescription }
+          task={ this.props.task }
+          open={ this.state.description.open }
+          isEditMode={ this.state.editMode.active }
+          toggleEditMode={ this.toggleEditMode }
+          toggleDescription={ this.toggleDescription }
           onFieldChange={ this.onFieldChange }
           onRemove={ this.showAssertDeleteDialog } />
 

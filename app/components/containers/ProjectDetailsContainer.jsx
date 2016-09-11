@@ -22,17 +22,21 @@ class ProjectDetailsContainer extends React.Component {
   }
 
   componentDidMount() {
-    var projectRef = ProjectService.getReference()
+    var ref = ProjectService.getReference()
 
-    projectRef.once('value', snapshot => {
+    ref.once('value', snapshot => {
+      let project = snapshot.val()
+
+      if (project) {
+        this.props.dispatch(setProject(snapshot.val()))
+      }
+    })
+
+    ref.on('value', snapshot => {
       this.props.dispatch(setProject(snapshot.val()))
     })
-
-    projectRef.on('child_changed', snapshot => {
-      this.props.dispatch(changeProject(snapshot.key, snapshot.val()))
-    })
   }
-  
+
   getTotalHours(discount = false) {
     return Object.keys(this.props.tasks || {})
       .map(key => {
@@ -53,15 +57,19 @@ class ProjectDetailsContainer extends React.Component {
 
         return 0
       })
-      .reduce((previous, current) => previous + current, 0) 
+      .reduce((previous, current) => previous + current, 0)
+  }
+
+  getValuePerHour() {
+    return (this.props.project && this.props.project.valuePerHour) ? this.props.project.valuePerHour : 0
   }
 
   getTotalValue() {
-    return this.getTotalHours(true) * this.props.project.valuePerHour
+    return this.getTotalHours(true) * this.getValuePerHour()
   }
 
   getDiscountedValue() {
-   return this.getDiscountedHours() * this.props.project.valuePerHour 
+   return this.getDiscountedHours() * this.getValuePerHour()
   }
 
   onFieldChange(key, e) {
@@ -92,7 +100,7 @@ class ProjectDetailsContainer extends React.Component {
         getDiscountedValue={ this.getDiscountedValue }
         onFieldChange={ this.onFieldChange }
         onExportClick={ this.onExportClick }
-        project={ this.props.project }
+        project={ this.props.project || ProjectService.default }
         tasks={ this.props.tasks } />
     )
   }
