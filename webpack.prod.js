@@ -1,4 +1,5 @@
 const path = require('path');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -29,7 +30,16 @@ module.exports = {
       }
     ]
   },
+  recordsPath: './records/records.json',
   plugins: [
+    new HardSourceWebpackPlugin({
+      cacheDirectory: './cache',
+      environmentPaths: {
+        root: process.cwd(),
+        directories: ['node_modules', 'app'],
+        files: ['package.json', 'webpack.config.js'],
+      },
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
