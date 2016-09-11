@@ -16,34 +16,45 @@
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link rel="manifest" href="manifest.json">
     <style>
-      button:focus {
-        outline: none;
-      }
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+        
+        button:focus {
+          outline: none;
+        }
 
-      button.delete:focus {
-        background-color: rgba(17, 17, 17, 0.5);
-      }
+        button.delete:focus {
+          background-color: rgba(17, 17, 17, 0.5);
+        }
 
-      .pointer-cursor-on-hover:hover {
-        cursor: pointer;
-      }
+        .pointer-cursor-on-hover:hover {
+          cursor: pointer;
+        }
 
-      .pointer-initial-on-hover:hover {
-        cursor: initial;
-      }
+        .pointer-initial-on-hover:hover {
+          cursor: initial;
+        }
 
-      .non-styled-button {
-        border: none;
-        background: none;
-        text-align: left;
-        width: 100%;
-      }
+        .non-styled-button {
+          outline: none;
+          border: none;
+          background: none;
+        }
 
-      .non-styled-button:focus {
-        color: #1fc8db;
-      }
+        .task__header {
+          text-align: left;
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        .task__name:focus {
+          color: #1fc8db;
+        }
     </style>
   </head>
 
