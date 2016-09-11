@@ -1,5 +1,6 @@
-import React from 'react'
-import TaskService from '../../services/task-service';
+import React from "react"
+import TaskService from "../../services/task-service";
+import Textarea from "react-textarea-autosize"
 
 const initialState = TaskService.default
 
@@ -17,11 +18,11 @@ export default class TaskForm extends React.Component {
   handleChange(key, event) {
     switch(key) {
       case "discounted":
-        this.setState({ ...this.state, [key]: event.target.checked });
-        break;
+      this.setState({ ...this.state, [key]: event.target.checked });
+      break;
 
       default:
-        this.setState({ ...this.state, [key]: event.target.value });
+      this.setState({ ...this.state, [key]: event.target.value });
     }
   }
 
@@ -37,69 +38,102 @@ export default class TaskForm extends React.Component {
   render() {
     return (
       <div className="container">
-        <label className="label">Title</label>
         <p className="control">
-          <input 
-            ref={component => this._taskTitleInput = component}
-            className="input"
-            type='text' 
-            title='title' 
-            value={ this.state.title } 
-            onChange={ this.handleChange.bind(this, 'title') } />
-        </p>
-        
-        <label className="label">Description</label>
-        <p className="control">
-          <input 
-            className="input"
-            type='text' 
-            title='description' 
-            value={ this.state.description } 
-            onChange={ this.handleChange.bind(this, 'description') } />
-        </p>
+          <label className="label">
+            Title
+            <input
 
-        <label className="label">Discounted?</label>
-        <p className="control">
-          <input 
-            onChange={ this.handleChange.bind(this, 'discounted') }
-            checked={ this.state.discounted }
-            type="checkbox" />
-        </p>
-        
-        <label className="label">Hours for Analysis</label>
-        <p className="control">
-          <input 
-            className="input"
-            type='number' 
-            title='analysis_duration'
-            value={ this.state.analysis_duration } 
-            onChange={ this.handleChange.bind(this, 'analysis_duration') } />
-        </p>
+              ref={component => this._taskTitleInput = component}
+              className="input"
+              type="text"
 
-        <label className="label">Hours for Testing</label>
-        <p className="control">
-          <input 
-            className="input"
-            type='number' 
-            title='testing_duration'
-            value={ this.state.testing_duration } 
-            onChange={ this.handleChange.bind(this, 'testing_duration') } />
-        </p>
+              title="title"
 
-        <label className="label">Hours for Development</label>
-        <p className="control">
-          <input 
-            className="input"
-            type='number'
-            title='development_duration'
-            value={ this.state.development_duration } 
-            required={ true }
-            onChange={ this.handleChange.bind(this, 'development_duration') } />
+              value={ this.state.title }
+
+              onChange={ this.handleChange.bind(this, "title") } />
+          </label>
         </p>
 
         <p className="control">
-          <button className="button is-primary is-outlined" onClick={ this.handleSubmit }>Submit</button>
-          <button className="button is-link" onClick={ this.clearState }>Cancel</button>
+          <label className="label">
+            Description
+            <Textarea
+
+              className="input"
+              title="description"
+
+              value={ this.state.description }
+
+              onChange={ this.handleChange.bind(this, "description") } />
+          </label>
+        </p>
+
+        <p className="control">
+          <label className="label">
+            Discounted? &nbsp;
+            <input
+
+              onChange={ this.handleChange.bind(this, "discounted") }
+              checked={ this.state.discounted }
+              type="checkbox" />
+          </label>
+        </p>
+
+        <p className="control">
+          <label className="label">
+            Hours for Analysis
+            <input
+
+              className="input"
+              type="number"
+
+              title="analysis_duration"
+              value={ this.state.analysis_duration }
+
+              onChange={ this.handleChange.bind(this, "analysis_duration") } />
+          </label>
+        </p>
+
+
+        <p className="control">
+          <label className="label">
+            Hours for Testing
+            <input
+
+              className="input"
+              type="number"
+
+              title="testing_duration"
+              value={ this.state.testing_duration }
+
+              onChange={ this.handleChange.bind(this, "testing_duration") } />
+          </label>
+        </p>
+
+
+        <p className="control">
+          <label className="label">
+            Hours for Development
+            <input
+
+              className="input"
+              type="number"
+              title="development_duration"
+              value={ this.state.development_duration }
+
+              required={ true }
+              onChange={ this.handleChange.bind(this, "development_duration") } />
+          </label>
+        </p>
+
+        <p className="control">
+          <button
+            className="button is-primary is-outlined"
+            onClick={ this.handleSubmit }>Submit</button>
+          <button
+            className="button is-link"
+            onClick={ this.clearState }>Cancel</button>
         </p>
       </div>
     )

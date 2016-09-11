@@ -17,7 +17,7 @@ export default class MeasuLogo extends React.Component {
 
     return (
       <div style={ logoStyle }>
-        <img src="images/photo.gif" style={ imageStyle }/>
+        <img src="images/photo.gif" style={ imageStyle } />
         measu
       </div>
     )
