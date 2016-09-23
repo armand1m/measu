@@ -8,8 +8,9 @@
  */
 import firebase from 'firebase';
 
-console.log(process.env.FIREBASE_KEYS)
-firebase.initializeApp(process.env.FIREBASE_KEYS);
+const keys = JSON.parse(process.env.FIREBASE_KEYS)
+console.log(keys)
+firebase.initializeApp(keys);
 
 export default firebase
 
