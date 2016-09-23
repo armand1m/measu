@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 
-import tasks from './task-reducer';
-import project from './project-reducer';
+import tasks from './tasks';
+import projects from './projects';
+import currentProject from './currentProject';
 
 const reducers = combineReducers({
-  tasks, project
+  tasks, projects, currentProject
 });
 
 export default reducers;

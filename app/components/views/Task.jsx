@@ -159,21 +159,21 @@ export default class Task extends React.Component {
           <p>
             <label className="label">
               Analysis: 
-              <p> { this.props.task.analysis_duration } hours </p>
+              <span> { this.props.task.analysis_duration } hours </span>
             </label> 
           </p>
 
           <p>
             <label className="label">
               Testing: 
-              <p> { this.props.task.testing_duration } hours</p>
+              <span> { this.props.task.testing_duration } hours</span>
             </label> 
           </p>
 
           <p>
             <label className="label">
               Development: 
-              <p> { this.props.task.development_duration } hours</p>
+              <span> { this.props.task.development_duration } hours</span>
             </label> 
           </p>
         </div>

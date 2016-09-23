@@ -1,4 +1,4 @@
-import * as types from '../actions/action-types';
+import * as types from '../actions/types';
 
 const initialState = {}
 
@@ -9,7 +9,7 @@ const tasks = function(state = initialState, action) {
 
     case types.ADD_TASK:
     case types.CHANGE_TASK:
-      var { key, value } = action.payload
+      let { key, value } = action.payload
 
       return {
         ...state,

@@ -3,11 +3,19 @@ import { connect } from 'react-redux';
 import config from '../../config';
 import ProjectDetails from '../views/ProjectDetails.jsx';
 import { getTaskTotalHours, getTaskTotalValue } from '../../services/task-service';
-import { setProject, changeProject } from '../../actions/project-actions';
-import {FirebaseModel} from '../../services/firebase-service';
+import { changeProject } from '../../actions/projects';
+import { FirebaseModel } from '../../services/firebase-service';
 import ProjectService from '../../services/project-service';
 
 const FirebaseService = new FirebaseModel()
+
+function _mapThenSum(array, mapper) {
+  const sumReducer = (previous, current) => previous + current
+
+  return array
+    .map(mapper)
+    .reduce(sumReducer, 0)
+}
 
 class ProjectDetailsContainer extends React.Component {
   constructor(props) {
@@ -21,47 +29,50 @@ class ProjectDetailsContainer extends React.Component {
     this.onExportClick = this.onExportClick.bind(this)
   }
 
+  get currentKey() {
+    return this.props.currentProject.key 
+  }
+
+  get project() {
+    return this.currentKey
+      ? this.props.projects[this.currentKey]
+      : {}
+  }
+
+  get tasks() {
+    return Object
+      .keys(this.props.tasks)
+      .map(key => this.props.tasks[key])
+      .filter(task => task.projectId == this.currentKey)
+  }
+
   componentDidMount() {
-    var ref = ProjectService.getReference()
+    var ref = ProjectService.getReference(this.currentKey)
 
-    ref.once('value', snapshot => {
-      let project = snapshot.val()
-
-      if (project) {
-        this.props.dispatch(setProject(snapshot.val()))
-      }
-    })
-
-    ref.on('value', snapshot => {
-      this.props.dispatch(setProject(snapshot.val()))
+    ref.on('child_changed', snapshot => {
+      if (this.currentKey)
+        this.props.dispatch(changeProject(this.currentKey, snapshot.key, snapshot.val()))
     })
   }
 
   getTotalHours(discount = false) {
-    return Object.keys(this.props.tasks || {})
-      .map(key => {
-        if (discount && this.props.tasks[key].discounted)
-          return 0
-
-        return getTaskTotalHours(this.props.tasks[key])
-      })
-      .reduce((previous, current) => previous + current, 0)
+    return _mapThenSum(
+      this.tasks, 
+      task => (discount && task.discounted) ? 0 : getTaskTotalHours(task)
+    )
   }
 
   getDiscountedHours() {
-    return Object.keys(this.props.tasks || {})
-      .map(key => {
-        if (this.props.tasks[key].discounted) {
-          return getTaskTotalHours(this.props.tasks[key])
-        }
-
-        return 0
-      })
-      .reduce((previous, current) => previous + current, 0)
+    return _mapThenSum(
+      this.tasks, 
+      task => (task.discounted) ? getTaskTotalHours(task) : 0
+    )
   }
 
   getValuePerHour() {
-    return (this.props.project && this.props.project.valuePerHour) ? this.props.project.valuePerHour : 0
+    return (this.project && this.project.valuePerHour) 
+      ? this.project.valuePerHour 
+      : 0
   }
 
   getTotalValue() {
@@ -69,24 +80,27 @@ class ProjectDetailsContainer extends React.Component {
   }
 
   getDiscountedValue() {
-   return this.getDiscountedHours() * this.getValuePerHour()
+    return this.getDiscountedHours() * this.getValuePerHour()
   }
 
   onFieldChange(key, e) {
-    var data = {
+    if (!this.currentKey)
+      return
+
+    let data = {
       [key]: e.target.value
     }
 
-    ProjectService.update(null, data)
+    ProjectService.update(this.currentKey, data)
   }
 
   onExportClick() {
     FirebaseService
     .getReference()
     .once('value', snapshot => {
-      var data = JSON.stringify(snapshot.val())
+      let data = JSON.stringify(snapshot.val())
 
-      download(data, `${this.props.project.name}.json`, 'application/json')
+      download(data, `teste.json`, 'application/json')
     })
   }
 
@@ -100,16 +114,16 @@ class ProjectDetailsContainer extends React.Component {
         getDiscountedValue={ this.getDiscountedValue }
         onFieldChange={ this.onFieldChange }
         onExportClick={ this.onExportClick }
-        project={ this.props.project || ProjectService.default }
-        tasks={ this.props.tasks } />
+        project={ this.project }
+        tasks={ this.tasks } />
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let { tasks, project } = state
+  let { tasks, projects, currentProject } = state
 
-  return { tasks, project }
+  return { tasks, projects, currentProject }
 }
 
 export default connect(mapStateToProps)(ProjectDetailsContainer);

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskContainer from './TaskContainer.jsx';
-import TaskList from '../views/TaskList.jsx';
-import { setTasks, removeTask, addTask, changeTask } from '../../actions/task-actions';
+import { setTasks, removeTask, addTask, changeTask } from '../../actions/task';
 import TaskService from '../../services/task-service';
 
 class TaskListContainer extends React.Component {
@@ -12,22 +11,35 @@ class TaskListContainer extends React.Component {
   }
 
   componentDidMount() {
-    var tasksRef = TaskService.getReference()
+    var ref = TaskService.getReference()
 
-    tasksRef.on('child_added', snapshot => {
+    ref.on('child_added', snapshot => {
       this.props.dispatch(addTask(snapshot.key, snapshot.val()))
     })
 
-    tasksRef.on('child_removed', snapshot => {
+    ref.on('child_removed', snapshot => {
       this.props.dispatch(removeTask(snapshot.key))
     })
 
-    tasksRef.on('child_changed', snapshot => {
+    ref.on('child_changed', snapshot => {
       this.props.dispatch(changeTask(snapshot.key, snapshot.val()))
     })
   }
 
+  get tasks() {
+    return this.props.tasks || {}
+  }
+
+  get currentProjectId() {
+    return this.props.currentProject.key
+  }
+
   createTaskContainer(key) {
+    let task = this.props.tasks[key]
+
+    if (task.projectId != this.currentProjectId)
+      return
+
     return (
       <TaskContainer 
         key={ key } 
@@ -37,20 +49,23 @@ class TaskListContainer extends React.Component {
   }
 
   render() {
+    if (!this.currentProjectId)
+      return (<p className="subtitle">Nenhum projeto aberto.</p>)
+
     return (
       <div>
-        <TaskList>
-          { Object.keys(this.props.tasks || {}).map(this.createTaskContainer) }
-        </TaskList>
+        <ul>
+          { Object.keys(this.tasks).map(this.createTaskContainer) }
+        </ul>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let { tasks } = state
+  let { tasks, currentProject } = state
 
-  return { tasks }
+  return { tasks, currentProject }
 }
 
 const mapDispatchToProps = (dispatch) => {
