@@ -5,23 +5,11 @@ import TaskListContainer from '../containers/TaskListContainer.jsx';
 import TaskFormContainer from '../containers/TaskFormContainer.jsx';
 import ProjectDetailsContainer from '../containers/ProjectDetailsContainer.jsx';
 
-const imageStyle = {
-  width: "5rem",
-  borderRadius: "50%",
-  margin: "1rem"
-}
-
-const titleStyle = {
-  alignItems: "center",
-  display: "flex",
-  justifyContent: "center"
-}
-
 const keyMap = {
   'FocusTaskTitleInput': 'ctrl+n'
 }
 
-class Home extends React.Component {
+export default class CurrentProject extends React.Component {
   constructor(props) {
     super(props)
 
@@ -45,7 +33,7 @@ class Home extends React.Component {
         style={ { outline: "none" } }
         keyMap={ keyMap }
         handlers={ handlers }>
-        <div >
+        <div>
           <div className="content columns">
             <div className="column is-8">
               <TaskListContainer />
@@ -68,5 +56,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default Home

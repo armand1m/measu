@@ -7,6 +7,7 @@ import TaskService from '../../services/task-service';
 function _isNumber(number) {
   return !isNaN(parseFloat(number)) && isFinite(number);
 }
+
 class TaskContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -34,7 +35,7 @@ class TaskContainer extends React.Component {
 
   onFieldChange(key, e) {
     var data = {}
-    console.log(e.target)
+    
     switch(key) {
       case "discounted":
         data[key] = e.target.checked

@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router';
 import MeasuLogo from './MeasuLogo.jsx';
 
-export default class MainFooter extends React.Component {
+export default class MainHeader extends React.Component {
   render() {
     return (
       <div className="content has-text-centered">
-        <div className="title is-1">
+        <div className="title is-1 is-marginless">
           <MeasuLogo />
         </div>
+
+        { this.props.children }
       </div>
     )
   }

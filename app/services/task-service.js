@@ -8,7 +8,8 @@ class Task extends FirebaseModel {
       analysis_duration: 0,
       testing_duration: 0,
       development_duration: 0,
-      discounted: false
+      discounted: false,
+      projectId: null
     }
   }
 
@@ -23,6 +24,7 @@ class Task extends FirebaseModel {
 
   constructor() {
     super()
+    
     this.reference = "tasks"
   }
 }
@@ -36,10 +38,7 @@ export function getTaskTotalHours(task) {
 }
 
 export function getTaskTotalValue(valuePerHour, task) {
-  if (task.discounted)
-    return 0
-
-  return getTaskTotalHours(task) * valuePerHour
+  return (task.discounted) ? 0 : getTaskTotalHours(task) * valuePerHour
 }
 
 export default TaskService
