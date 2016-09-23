@@ -21,7 +21,8 @@ export default class MainLayout extends React.Component {
         style={ styles.container } 
         className="container is-fluid">
         <MainHeader>
-          <MenuContainer />
+          <MenuContainer 
+            currentPath={ this.props.location.pathname } />
         </MainHeader>
         
         <div style={ styles.content }>

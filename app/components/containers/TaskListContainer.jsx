@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskContainer from './TaskContainer.jsx';
+import Message from '../views/Message.jsx';
 import { setTasks, removeTask, addTask, changeTask } from '../../actions/task';
 import TaskService from '../../services/task-service';
 
@@ -30,6 +31,17 @@ class TaskListContainer extends React.Component {
     return this.props.tasks || {}
   }
 
+  get tasksKeys() {
+    return Object.keys(this.tasks)
+  }
+
+  get currentProjectTasks() {
+    return this
+      .tasksKeys
+      .map(key => this.tasks[key])
+      .filter(task => task.projectId === this.currentProjectId)
+  }
+
   get currentProjectId() {
     return this.props.currentProject.key
   }
@@ -48,14 +60,31 @@ class TaskListContainer extends React.Component {
     )
   }
 
+  createMessage(message) {
+    return (
+      <div>
+        <ul>
+          <Message centered={ true }>
+            { message }
+          </Message>
+        </ul>
+      </div>
+    )
+  }
+
   render() {
     if (!this.currentProjectId)
-      return (<p className="subtitle">Nenhum projeto aberto.</p>)
+      return this.createMessage("No current project. You should open one, it will be cool.")
+
+    let tasksKeys = Object.keys(this.tasks)
+
+    if (!this.currentProjectTasks.length)
+      return this.createMessage("No tasks in the current project.")
 
     return (
       <div>
         <ul>
-          { Object.keys(this.tasks).map(this.createTaskContainer) }
+          { tasksKeys.map(this.createTaskContainer) }
         </ul>
       </div>
     )

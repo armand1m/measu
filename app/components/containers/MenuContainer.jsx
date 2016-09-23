@@ -12,20 +12,31 @@ class MenuContainer extends React.Component {
   }
 
   get currentProjectTab() {
+    let path = "/current"
+    let clazz = 
+      this.isActive(path) ? "is-active" : ""
+
     return (
-      <li>
-        <Link to="/current">
+      <li className={ clazz }>
+        <Link to={ path }>
           { this.currentProject.name }
         </Link>
       </li>
     )
   }
 
+  isActive(path) {
+    return this.props.currentPath == path
+  }
+
   render() {
+    let clazz = 
+      this.isActive("/") ? "is-active" : ""
+
     return (
       <div className="tabs">
         <ul>
-          <li style={ { marginTop: ".25em" } }>
+          <li className={ clazz } style={ { marginTop: ".25em" } }>
             <Link to="/">
               Projects
             </Link>

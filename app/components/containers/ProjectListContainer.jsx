@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setProjects, setCurrentProjectKey } from '../../actions/projects';
 import ListItem from '../views/ListItem.jsx';
+import Message from '../views/Message.jsx';
 import ProjectService from '../../services/project-service';
 
 class ProjectListContainer extends React.Component {
@@ -10,6 +11,10 @@ class ProjectListContainer extends React.Component {
 
     this.createProjectListItem = this.createProjectListItem.bind(this)
     this.onProjectListItemClick = this.onProjectListItemClick.bind(this)
+  }
+
+  get projects() {
+    return this.props.projects || {}
   }
 
   componentDidMount() {
@@ -22,10 +27,11 @@ class ProjectListContainer extends React.Component {
 
   onProjectListItemClick(key) {
     this.props.dispatch(setCurrentProjectKey(key))
+    this.props.history.push('/current');
   }
 
   createProjectListItem(key) {
-    let project = this.props.projects[key]
+    let project = this.projects[key]
 
     return (
       <ListItem 
@@ -37,11 +43,28 @@ class ProjectListContainer extends React.Component {
     )
   }
 
-  render() {
+  createMessage(message) {
     return (
       <div>
         <ul>
-          { Object.keys(this.props.projects || {}).map(this.createProjectListItem) }
+          <Message centered={ true }>
+            { message }
+          </Message>
+        </ul>
+      </div>
+    )
+  }
+
+  render() {
+    let projectsKeys = Object.keys(this.projects)
+
+    if (!projectsKeys.length)
+      return this.createMessage("Actually, there are no projects for you in here.")
+
+    return (
+      <div>
+        <ul>
+          { projectsKeys.map(this.createProjectListItem) }
         </ul>
       </div>
     )

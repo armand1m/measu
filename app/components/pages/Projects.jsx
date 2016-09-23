@@ -7,7 +7,7 @@ export default class Projects extends React.Component {
       <div>
         <div className="content columns">
           <div className="column is-12">
-            <ProjectListContainer />
+            <ProjectListContainer history={ this.props.history } />
           </div>
         </div>
       </div>
