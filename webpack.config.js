@@ -36,7 +36,10 @@ module.exports = {
   plugins: [
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.FIREBASE_KEYS': JSON.stringify({
+        "databaseURL": "ws://127.0.1:3000"
+      })
     })
   ]
 };

@@ -1,6 +1,5 @@
 node_modules
 build
-app/firebase-config.js
 www/app.js
 .DS_Store
 
