@@ -42,7 +42,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.FIREBASE_KEYS': JSON.stringify(process.env.FIREBASE_KEYS)
+      'process.env.FIREBASE_KEYS': JSON.parse(process.env.FIREBASE_KEYS)
     }),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
