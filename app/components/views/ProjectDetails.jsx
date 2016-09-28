@@ -92,7 +92,13 @@ export default class ProjectDetails extends React.Component {
         <div className="is-fullwidth has-text-right">
           <button
             className="button is-primary is-outlined"
-            onClick={ this.props.onExportClick }>
+            onClick={ this.props.onExportClick.bind(this, 'md') }>
+            Export Markdown
+          </button>
+
+          <button
+            className="button is-primary is-outlined"
+            onClick={ this.props.onExportClick.bind(this, 'json') }>
             Export
           </button>
         </div>
