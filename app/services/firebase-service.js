@@ -6,11 +6,11 @@
     storageBucket: "<name>.appspot.com",
   }
  */
-import firebase from 'firebase';
+import firebase from 'firebase'
 
-const keys = JSON.parse(process.env.FIREBASE_KEYS)
-console.log(keys)
-firebase.initializeApp(keys);
+const keys = process.env.FIREBASE_KEYS
+
+firebase.initializeApp(keys)
 
 export default firebase
 

@@ -15,7 +15,7 @@ const util = {
   isEditing: {
     color: "#1fc8db"
   },
-  editButton; {
+  editButton: {
     paddingLeft: "3px"
   },
   contentDivider: { 
