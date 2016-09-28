@@ -10,7 +10,13 @@ import firebase from 'firebase'
 
 const keys = process.env.FIREBASE_KEYS
 
-firebase.initializeApp(keys)
+let parsedKeys = keys
+
+if (typeof keys === "string") {
+  parsedKeys = JSON.parse(keys)
+}
+
+firebase.initializeApp(parsedKeys)
 
 export default firebase
 
