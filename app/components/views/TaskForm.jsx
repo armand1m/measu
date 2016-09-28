@@ -18,11 +18,11 @@ export default class TaskForm extends React.Component {
   handleChange(key, event) {
     switch(key) {
       case "discounted":
-      this.setState({ ...this.state, [key]: event.target.checked });
+        this.setState({ ...this.state, [key]: event.target.checked });
       break;
 
       default:
-      this.setState({ ...this.state, [key]: event.target.value });
+        this.setState({ ...this.state, [key]: event.target.value });
     }
   }
 
@@ -42,15 +42,11 @@ export default class TaskForm extends React.Component {
           <label className="label">
             Title
             <input
-
               ref={component => this._taskTitleInput = component}
               className="input"
               type="text"
-
               title="title"
-
               value={ this.state.title }
-
               onChange={ this.handleChange.bind(this, "title") } />
           </label>
         </p>
@@ -59,12 +55,9 @@ export default class TaskForm extends React.Component {
           <label className="label">
             Description
             <Textarea
-
               className="input"
               title="description"
-
               value={ this.state.description }
-
               onChange={ this.handleChange.bind(this, "description") } />
           </label>
         </p>
@@ -73,7 +66,6 @@ export default class TaskForm extends React.Component {
           <label className="label">
             Discounted? &nbsp;
             <input
-
               onChange={ this.handleChange.bind(this, "discounted") }
               checked={ this.state.discounted }
               type="checkbox" />
@@ -84,13 +76,10 @@ export default class TaskForm extends React.Component {
           <label className="label">
             Hours for Analysis
             <input
-
               className="input"
               type="number"
-
               title="analysis_duration"
               value={ this.state.analysis_duration }
-
               onChange={ this.handleChange.bind(this, "analysis_duration") } />
           </label>
         </p>
@@ -100,13 +89,10 @@ export default class TaskForm extends React.Component {
           <label className="label">
             Hours for Testing
             <input
-
               className="input"
               type="number"
-
               title="testing_duration"
               value={ this.state.testing_duration }
-
               onChange={ this.handleChange.bind(this, "testing_duration") } />
           </label>
         </p>
@@ -116,12 +102,10 @@ export default class TaskForm extends React.Component {
           <label className="label">
             Hours for Development
             <input
-
               className="input"
               type="number"
               title="development_duration"
               value={ this.state.development_duration }
-
               required={ true }
               onChange={ this.handleChange.bind(this, "development_duration") } />
           </label>
@@ -130,10 +114,15 @@ export default class TaskForm extends React.Component {
         <p className="control">
           <button
             className="button is-primary is-outlined"
-            onClick={ this.handleSubmit }>Submit</button>
+            onClick={ this.handleSubmit }>
+            Submit
+          </button>
+          
           <button
             className="button is-link"
-            onClick={ this.clearState }>Cancel</button>
+            onClick={ this.clearState }>
+            Cancel
+          </button>
         </p>
       </div>
     )

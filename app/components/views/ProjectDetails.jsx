@@ -18,7 +18,6 @@ export default class ProjectDetails extends React.Component {
       <article className="content">
         <h3 className="title is-3">
           <NonBorderTextarea
-
             onChange={ this.props.onFieldChange.bind(this, 'name') }
             value={ this.props.project.name }
             placeholder="Project Name" />
@@ -26,7 +25,6 @@ export default class ProjectDetails extends React.Component {
 
         <p className="subtitle is-4">
           <NonBorderTextarea
-
             onChange={ this.props.onFieldChange.bind(this, 'description') }
             value={ this.props.project.description }
             placeholder="Project Description"/>

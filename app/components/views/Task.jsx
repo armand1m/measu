@@ -14,6 +14,25 @@ const util = {
   },
   isEditing: {
     color: "#1fc8db"
+  },
+  editButton; {
+    paddingLeft: "3px"
+  },
+  contentDivider: { 
+    margin: "1em 0", 
+    borderColor: "#eee" 
+  },
+  editableTitle: {
+    padding: "2px 6px 3px"
+  },
+  editableDescription: { 
+    color: "#69707a", 
+    fontSize: "100%", 
+    lineHeight: "1.428571428571429" 
+  },
+  discountedLabel: { 
+    display: "flex", 
+    alignItems: "center" 
   }
 }
 
@@ -25,20 +44,19 @@ export default class Task extends React.Component {
   }
 
   createEditButton() {
-    var style = { 
-      paddingLeft: "3px"
-    }
-
-    let editing = {
-      ...style,
-      color: util.isEditing.color
-    }
+    let style =
+      this.props.isEditMode 
+      ? [ util.editButton, util.isEditing ] 
+      : util.editButton
 
     return (
       <span 
         className="icon pointer-cursor-on-hover" 
         onClick={ this.props.toggleEditMode }>
-        <i className="fa fa-edit" style={ this.props.isEditMode ? editing : style } ></i>
+        <i 
+          className="fa fa-edit" 
+          style={ style }>
+        </i>
       </span>
     )
   }
@@ -52,12 +70,12 @@ export default class Task extends React.Component {
           <NonBorderTextarea
             className="title is-3 is-marginless"
             value={ this.props.task.title }
-            style={{ padding: "2px 6px 3px" }}
+            style={ util.editableTitle }
             onChange={ this.props.onFieldChange.bind(this, 'title') } />
         </div>
 
         <div className="content">
-          <hr style={ { margin: "1em 0", borderColor: "#eee" } } />
+          <hr style={ util.contentDivider } />
 
           <p className="control">
             <label className="label">
@@ -65,7 +83,7 @@ export default class Task extends React.Component {
               <NonBorderTextarea 
                 onChange={ this.props.onFieldChange.bind(this, 'description') }
                 value={ this.props.task.description }
-                style={{ color: "#69707a", fontSize: "100%", lineHeight: "1.428571428571429" }}
+                style={ util.editableDescription }
                 placeholder="..." />
             </label>
           </p>
@@ -129,16 +147,13 @@ export default class Task extends React.Component {
           <button
             className="task__name title is-3 is-marginless non-styled-button"
             onClick={ this.props.toggleDescription }
-            style={ {
-              ...headerStyle,
-              textAlign: 'left'
-            } }>
+            style={ [ headerStyle, { textAlign: 'left' } ] }>
             { this.props.task.title }
           </button>
         </div>
 
         <div className="content" style={ this.props.open ? {} : util.isHidden }>
-          <hr style={ { margin: "1em 0", borderColor: "#eee" } } />
+          <hr style={ util.contentDivider } />
 
           <p>
             <label className="label">
@@ -148,7 +163,7 @@ export default class Task extends React.Component {
           </p>
 
           <p>
-            <label className="label" style={ { display: "flex", alignItems: "center" } }>
+            <label className="label" style={ util.discountedLabel }>
               Discounted?
               <span className="icon">
                 <i className={ discountedIconClass }></i>
