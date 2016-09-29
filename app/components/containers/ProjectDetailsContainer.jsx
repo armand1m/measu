@@ -6,6 +6,7 @@ import { getTaskTotalHours, getTaskTotalValue } from '../../services/task-servic
 import { changeProject } from '../../actions/projects';
 import { FirebaseModel } from '../../services/firebase-service';
 import ProjectService from '../../services/project-service';
+import GenerateMarkdown from '../../services/markdown-service';
 
 const FirebaseService = new FirebaseModel()
 
@@ -21,7 +22,6 @@ class ProjectDetailsContainer extends React.Component {
   constructor(props) {
     super(props)
 
-    this.getDataAsMarkdown = this.getDataAsMarkdown.bind(this)
     this.getTotalHours = this.getTotalHours.bind(this)
     this.getTotalValue = this.getTotalValue.bind(this)
     this.getDiscountedHours = this.getDiscountedHours.bind(this)
@@ -103,42 +103,13 @@ class ProjectDetailsContainer extends React.Component {
 
       switch(type) {
         case 'md':
-          download(this.getDataAsMarkdown(), 'teste.md', 'text/markdown')
+          download(GenerateMarkdown(this.project, this.tasks), `${this.project.name}.md`, 'text/markdown')
           break;
 
         default:
-          download(json, `teste.json`, 'application/json')
+          download(json, `${this.project.name}.json`, 'application/json')
       }
     })
-  }
-
-  getDataAsMarkdown() {
-    let header = `# Invoice`
-
-    let project = this.project
-    let tasks = this.tasks
-
-    let contentHeader = `
-## ${project.name}
-
-- *Description:* ${project.description}
-- *Value per Hour:* ${project.valuePerHour}`
-
-    let tasksBody = 
-      tasks
-      .map(task => `
-- ${task.title}
-  - Description: ${task.description}
-  - Discounted? ${task.discounted}
-  - Analysis: ${task.analysis_duration}
-  - Testing: ${task.testing_duration}
-  - Development: ${task.development_duration}`)
-      .join("\n")
-
-      return `
-${header}
-${contentHeader}
-${tasksBody}`
   }
 
   render() {

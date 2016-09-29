@@ -1,5 +1,13 @@
 import firebase, { FirebaseModel } from './firebase-service'
 
+function _mapThenSum(array, mapper) {
+  const sumReducer = (previous, current) => previous + current
+
+  return array
+    .map(mapper)
+    .reduce(sumReducer, 0)
+}
+
 class Task extends FirebaseModel {
   get default() {
     return {
@@ -39,6 +47,17 @@ export function getTaskTotalHours(task) {
 
 export function getTaskTotalValue(valuePerHour, task) {
   return (task.discounted) ? 0 : getTaskTotalHours(task) * valuePerHour
+}
+
+export function getTotalHours(tasks, discount = false) {
+  return _mapThenSum(
+    tasks, 
+    task => (discount && task.discounted) ? 0 : getTaskTotalHours(task)
+  )
+}
+
+export function getTotalValue(tasks, valuePerHour) {
+  return getTotalHours(tasks, true) * valuePerHour
 }
 
 export default TaskService
