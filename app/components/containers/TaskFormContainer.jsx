@@ -10,7 +10,7 @@ class TaskFormContainer extends React.Component {
   }
   
   onSubmit(data) {
-    data.projectId = this.props.currentProject.key
+    data.projectId = this.props.projectId
 
     TaskService.create(data)
   }
@@ -23,9 +23,7 @@ class TaskFormContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let { currentProject } = state
-
-  return { currentProject }
+  return {}
 }
 
 export default connect(mapStateToProps)(TaskFormContainer);

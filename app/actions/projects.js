@@ -34,3 +34,17 @@ export function changeProject(projectId, key, value) {
     payload: { projectId, key, value }
   }
 }
+
+export function openProject(key) {
+  return {
+    type: types.OPEN_PROJECT,
+    payload: { key }
+  }
+}
+
+export function closeProject(key) {
+  return {
+    type: types.CLOSE_PROJECT,
+    payload: { key }
+  }
+}

@@ -1,4 +1,6 @@
 export const ADD_PROJECT = 'ADD_PROJECT'
+export const OPEN_PROJECT = 'OPEN_PROJECT'
+export const CLOSE_PROJECT = 'CLOSE_PROJECT'
 export const REMOVE_PROJECT = 'REMOVE_PROJECT'
 export const CHANGE_PROJECT = 'CHANGE_PROJECT'
 

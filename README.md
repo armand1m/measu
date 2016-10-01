@@ -1,5 +1,10 @@
-# measu
-
+<p align="center">
+  <h1 align="center">
+    <img src="https://github.com/armand1m/measu/blob/master/www/images/photo.gif?raw=true" style="width: 2em;border-radius: 50%;margin: 0.4em;">
+    measu
+  </h1>
+  <p align="center">The official library for Firebase and Angular 2</p>
+</p>
 measu is a service and project cost measurement tool for small software teams.
 
 [![Build Status](https://travis-ci.org/armand1m/measu.svg?branch=master)](https://travis-ci.org/armand1m/measu)

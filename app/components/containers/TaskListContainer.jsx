@@ -43,7 +43,7 @@ class TaskListContainer extends React.Component {
   }
 
   get currentProjectId() {
-    return this.props.currentProject.key
+    return this.props.projectId
   }
 
   createTaskContainer(key) {
@@ -92,9 +92,9 @@ class TaskListContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let { tasks, currentProject } = state
+  let { tasks } = state
 
-  return { tasks, currentProject }
+  return { tasks }
 }
 
 const mapDispatchToProps = (dispatch) => {
