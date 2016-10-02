@@ -2,12 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setProjects, setCurrentProjectKey, openProject } from '../../actions/projects';
 import ListItem from '../views/ListItem.jsx';
-import Message from '../views/Message.jsx';
+import MessageBox from '../views/MessageBox.jsx';
 import ProjectService from '../../services/project-service';
+import LoadingBox from '../views/LoadingBox.jsx'
 
 class ProjectListContainer extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      loading: true
+    }
 
     this.createProjectListItem = this.createProjectListItem.bind(this)
     this.onProjectListItemClick = this.onProjectListItemClick.bind(this)
@@ -21,6 +26,7 @@ class ProjectListContainer extends React.Component {
     let ref = ProjectService.getReference()
 
     ref.once('value', snapshot => {
+      this.setState({ loading: false })
       this.props.dispatch(setProjects(snapshot.val()))
     })
   }
@@ -42,23 +48,18 @@ class ProjectListContainer extends React.Component {
     )
   }
 
-  createMessage(message) {
-    return (
-      <div>
-        <ul>
-          <Message centered={ true }>
-            { message }
-          </Message>
-        </ul>
-      </div>
-    )
-  }
-
   render() {
     let projectsKeys = Object.keys(this.projects)
 
-    if (!projectsKeys.length)
-      return this.createMessage("Actually, there are no projects for you in here.")
+    if (this.state.loading)
+      return (<LoadingBox />)
+
+    if (!(projectsKeys.length || this.state.loading))
+      return (
+        <MessageBox>
+          Actually, there are no projects for you in here.
+        </MessageBox>
+      )
 
     return (
       <div>

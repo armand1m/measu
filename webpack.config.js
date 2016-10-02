@@ -30,7 +30,11 @@ module.exports = {
       {
         test: /(\.scss|\.sass)$/,
         loaders: ["style", "css", "sass"]
-      }
+      },
+      { 
+        test: /\.css$/, 
+        loaders: ["style", "css"] 
+      },
     ]
   },
   plugins: [
