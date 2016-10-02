@@ -8,6 +8,7 @@ class MenuContainer extends React.Component {
     super(props)
 
     this.createProjectTab = this.createProjectTab.bind(this)
+    this.closeProject = this.closeProject.bind(this)
   }
 
   get currentProjectId() {
@@ -27,12 +28,21 @@ class MenuContainer extends React.Component {
     return (
       <li 
         key={ projectId } 
-        className={ clazzName } >
+        className={ clazzName } 
+        style={{ display: "flex", alignItems: "center" }}>
         <Link to={ tabUrl }>
           { this.props.projects[projectId].name }
         </Link>
+        <button 
+          className="delete"
+          onClick={ this.closeProject.bind(this, projectId) }
+          style={{ width: "1.4em", height: "1.4em" }}></button>
       </li> 
     )
+  }
+
+  closeProject(projectId) {
+    this.props.dispatch(closeProject(projectId))
   }
   
   isActive(path) {
@@ -45,7 +55,7 @@ class MenuContainer extends React.Component {
 
     return (
       <div className="tabs is-medium">
-        <ul style={{ marginLeft: "0", marginRight: "0" }}>
+        <ul style={{ marginLeft: "0", marginRight: "0", marginBottom: "5px" }}>
           <li className={ clazzName } style={ { marginTop: ".25em" } }>
             <Link to="/">
               Projects

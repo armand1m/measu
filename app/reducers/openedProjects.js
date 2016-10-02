@@ -19,11 +19,10 @@ const openedProjects = function (state = initialState, action) {
     case types.CLOSE_PROJECT:
       var { key } = action.payload
       
-      let newState = { ...state }
-
-      newState.list.splice(key)
-
-      return newState
+      return { 
+        ...state,
+        list: state.list.filter(projectId => projectId !== key)
+      }
 
     default:
       return state
