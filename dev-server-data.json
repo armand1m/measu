@@ -1,0 +1,269 @@
+{
+  "projects" : {
+    "high3" : {
+      "description" : "#0003/02",
+      "name" : "#0003/02 - High / AMS",
+      "valuePerHour" : "40"
+    },
+    "high4" : {
+      "description" : "#0004/01",
+      "name" : "#0004/01 - High / AMS",
+      "valuePerHour" : "40"
+    },
+    "loja-green" : {
+      "description" : "eCommerce Green Store Completo",
+      "name" : "Green - Projeto",
+      "valuePerHour" : "40"
+    },
+    "loja-leo-maquinas" : {
+      "description" : "Orçamento Leo Maquinas Completo",
+      "name" : "eCommerce Leo Maquinas",
+      "valuePerHour" : "40"
+    },
+    "shutdown-green" : {
+      "description" : "Orçamento Green Store",
+      "name" : "Shutdown Green",
+      "valuePerHour" : "40"
+    },
+    "shutdown-leo-maquinas" : {
+      "description" : "Orçamento Leo Maquinas",
+      "name" : "Shutdown Leo Maquinas",
+      "valuePerHour" : "40"
+    }
+  },
+  "tasks" : {
+    "-KQGywlzrVhBkcF4ReyI" : {
+      "analysis_duration" : 0,
+      "description" : "Em telas mobile, aproximar um pouco as categorias da logo no cabeçalho.  ",
+      "development_duration" : 0.5,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 0.5,
+      "title" : "Aproximar Categorias"
+    },
+    "-KQH1jRkEc8G3HFnHSNH" : {
+      "analysis_duration" : 0,
+      "description" : "Em telas mobile, permitir que o clique no nome/preço do produto acesse o produto.",
+      "development_duration" : 1,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 0.5,
+      "title" : "Links do Produto"
+    },
+    "-KQH1pUfqwYpSEJlpqjC" : {
+      "analysis_duration" : 0.5,
+      "description" : "Em telas mobile, diminuir a distância do rodapé para o ultimo produto e alinhar.",
+      "development_duration" : 1,
+      "discounted" : true,
+      "projectId" : "high3",
+      "testing_duration" : 1,
+      "title" : "Distancia do rodapé"
+    },
+    "-KQH1xkenP5N-Rdev_Aq" : {
+      "analysis_duration" : 0,
+      "description" : "Centralizar o lookbook no meio da página, aumentar um pouco a foto e diminuir um pouco as setas.",
+      "development_duration" : 1,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 0.5,
+      "title" : "Centralizar lookbook"
+    },
+    "-KQH21FC-d8cteqYXsNM" : {
+      "analysis_duration" : 0.5,
+      "description" : "Quando o produto não existir em estoque, deve aparecer SOLD OUT como texto do botão de ADD TO CART",
+      "development_duration" : 1.5,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 0.5,
+      "title" : "Botão SOLD OUT"
+    },
+    "-KQH2BqmfEVTuuAof06K" : {
+      "analysis_duration" : 2,
+      "description" : "Analisar porque emails enviados automaticamente estão indo para caixa de SPAM dos clientes.",
+      "development_duration" : 0,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 1,
+      "title" : "Emails como SPAM"
+    },
+    "-KQH2FsLxyB37BxQvqd_" : {
+      "analysis_duration" : 0.5,
+      "description" : "Habilitar que a moeda dos produtos apareça em formato de Dolar.",
+      "development_duration" : 1.5,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 1,
+      "title" : "Moeda em Dolar"
+    },
+    "-KQH2JGh7ApvCQK1iIGq" : {
+      "analysis_duration" : 1,
+      "description" : "Habilitar o cadastro internacional na tela de Checkout.",
+      "development_duration" : 1.5,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 1.5,
+      "title" : "Cadastro Internacional"
+    },
+    "-KQJ5tFEydBSzkI-sBWP" : {
+      "analysis_duration" : 1,
+      "description" : "Adicionar opção de envio internacional.",
+      "development_duration" : 1.5,
+      "discounted" : false,
+      "projectId" : "high3",
+      "testing_duration" : 1.5,
+      "title" : "Envio Internacional"
+    },
+    "-KR1D-FDZ42f0v2Pm-6B" : {
+      "analysis_duration" : 2,
+      "description" : "Configuração inicial do projeto e instalação do wordpress.",
+      "development_duration" : 2,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 2,
+      "title" : "Configurar ambiente"
+    },
+    "-KR1DkySbDrr2QidX6fz" : {
+      "analysis_duration" : 3,
+      "description" : "Instalar o woocommerce e cadastrar alguns produtos de teste",
+      "development_duration" : 2,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 2,
+      "title" : "Configurar Woocommerce"
+    },
+    "-KR1EBXpC0zhP1Roq0vb" : {
+      "analysis_duration" : 1,
+      "description" : "Baseado em layout",
+      "development_duration" : 3,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 2,
+      "title" : "Tela de home"
+    },
+    "-KR1E_tmJXszcQxdtXWI" : {
+      "analysis_duration" : 3,
+      "description" : "",
+      "development_duration" : 6,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 3,
+      "title" : "Tela de produtos"
+    },
+    "-KR1Eukkl_y9Oj7iDEOF" : {
+      "analysis_duration" : 1,
+      "description" : "Tela contendo os detalhes de um produto",
+      "development_duration" : 3,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 3,
+      "title" : "Tela de produto"
+    },
+    "-KR1F11Iv4jQmIiJjb7K" : {
+      "analysis_duration" : 1,
+      "description" : "",
+      "development_duration" : 3,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 2,
+      "title" : "Tela de about"
+    },
+    "-KR1HAtLfms5DRYdlWU2" : {
+      "analysis_duration" : 20,
+      "description" : "",
+      "development_duration" : 40,
+      "discounted" : false,
+      "projectId" : "loja-leo-maquinas",
+      "testing_duration" : 10,
+      "title" : "Integração com banco de dados"
+    },
+    "-KSKL-p3tDF3jpo-reLy" : {
+      "analysis_duration" : 0.5,
+      "description" : "Botão add to cart não funciona normalmente em Produtos Simples",
+      "development_duration" : 0.5,
+      "discounted" : true,
+      "projectId" : "high3",
+      "testing_duration" : 0.5,
+      "title" : "Botão add to cart em Produtos Simples"
+    },
+    "-KSLuXtZL6XfGNMLWt8q" : {
+      "analysis_duration" : 0,
+      "description" : "",
+      "development_duration" : 0,
+      "discounted" : false,
+      "testing_duration" : 0,
+      "title" : ""
+    },
+    "-KSbNIeWyfuw0VZY1RY4" : {
+      "analysis_duration" : 0.5,
+      "description" : "Não trocar a sequencia de imagens",
+      "development_duration" : 1,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 0.5,
+      "title" : "Arrumar o Zoom"
+    },
+    "-KSbNQ_tBKs5-5xykhdO" : {
+      "analysis_duration" : 0,
+      "description" : "Trocar o video da home",
+      "development_duration" : 0.5,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 0,
+      "title" : "Trocar video da home"
+    },
+    "-KSbNbNSvLu4VYLO9HFy" : {
+      "analysis_duration" : 0,
+      "description" : "",
+      "development_duration" : 0.5,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 0,
+      "title" : "Tirar Champagne do Rodapé"
+    },
+    "-KSbNtSpcKdo-5GGE-Tc" : {
+      "analysis_duration" : 2,
+      "description" : "Um shutdown personalizado com um slider na home.",
+      "development_duration" : 4,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 1,
+      "title" : "Shutdown com Lookbook"
+    },
+    "-KSiZR3GlUCFrTVwDD9s" : {
+      "analysis_duration" : 2,
+      "description" : "Em telas menores (notebook, tablet, mobile), diminuir o tamanho das categorias laterais. \nDe acordo com o cliente: \"Pelo menos tem que caber tudo assim que carregar a pagina.\"",
+      "development_duration" : 2,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 1,
+      "title" : "Diminuir tamanho das categorias laterais"
+    },
+    "-KSi_tjBt33vMgO55Lqy" : {
+      "analysis_duration" : 3,
+      "description" : "Aplicar tags de melhoria de Search Engine Optimization no template do site.\n\nO score atual dessa mensuração é de 66/100 como demonstrado aqui:\n\nhttp://seositecheckup.com/seo-audit/www.highcompanybr.com/shop",
+      "development_duration" : 4,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 1,
+      "title" : "Otimização de SEO"
+    },
+    "-KSia7Ge_udPaT_PGkmr" : {
+      "analysis_duration" : 1,
+      "description" : "Proibir a tela de lookbook de fazer scroll.",
+      "development_duration" : 3,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 1,
+      "title" : "Aparecer fotos inteiras de lookbook assim que abrir a pagina"
+    },
+    "-KSib5Q1KW2fOILbo0r7" : {
+      "analysis_duration" : 0.5,
+      "description" : "Possibilitar o usuário de desligar o som da home quando necessário.",
+      "development_duration" : 1,
+      "discounted" : false,
+      "projectId" : "high4",
+      "testing_duration" : 0.5,
+      "title" : "Colocar botão de desligar som no video da home"
+    }
+  }
+}
