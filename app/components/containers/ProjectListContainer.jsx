@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setProjects, setCurrentProjectKey } from '../../actions/projects';
+import { setProjects, setCurrentProjectKey, openProject } from '../../actions/projects';
 import ListItem from '../views/ListItem.jsx';
 import Message from '../views/Message.jsx';
 import ProjectService from '../../services/project-service';
@@ -26,8 +26,8 @@ class ProjectListContainer extends React.Component {
   }
 
   onProjectListItemClick(key) {
-    this.props.dispatch(setCurrentProjectKey(key))
-    this.props.history.push('/current');
+    this.props.dispatch(openProject(key))
+    this.props.history.push(`/project/${key}`);
   }
 
   createProjectListItem(key) {
@@ -35,8 +35,7 @@ class ProjectListContainer extends React.Component {
 
     return (
       <ListItem 
-        key={ key } 
-        active={ this.props.currentProject.key == key }
+        key={ key }
         onClick={ this.onProjectListItemClick.bind(this, key) }>
         { project.name }
       </ListItem>

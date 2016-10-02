@@ -25,9 +25,10 @@ export default class MainLayout extends React.Component {
             currentPath={ this.props.location.pathname } />
         </MainHeader>
         
-        <div style={ styles.content }>
+        <div className="is-fullwidth" style={ styles.content }>
           { this.props.children }
         </div>
+        
         <MainFooter />
       </div>
     )

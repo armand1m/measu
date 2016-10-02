@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { setProjects, setCurrentProjectKey, openProject, closeProject } from '../../actions/projects';
 import { connect } from 'react-redux';
 
 class MenuContainer extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.createProjectTab = this.createProjectTab.bind(this)
+    this.closeProject = this.closeProject.bind(this)
+  }
+
   get currentProjectId() {
     return this.props.currentProject.key
   }
@@ -11,41 +19,49 @@ class MenuContainer extends React.Component {
     return this.props.projects[this.currentProjectId]
   }
 
-  get currentProjectTab() {
-    let path = "/current"
-    let clazz = 
-      this.isActive(path) ? "is-active" : ""
+  createProjectTab(projectId) {
+    let tabUrl = `/project/${projectId}`
+
+    let clazzName = 
+      this.isActive(tabUrl) ? "is-active" : ""
 
     return (
-      <li className={ clazz }>
-        <Link to={ path }>
-          { this.currentProject.name }
+      <li 
+        key={ projectId } 
+        className={ clazzName } 
+        style={{ display: "flex", alignItems: "center" }}>
+        <Link to={ tabUrl }>
+          { this.props.projects[projectId].name }
         </Link>
-      </li>
+        <button 
+          className="delete"
+          onClick={ this.closeProject.bind(this, projectId) }
+          style={{ width: "1.4em", height: "1.4em" }}></button>
+      </li> 
     )
   }
 
+  closeProject(projectId) {
+    this.props.dispatch(closeProject(projectId))
+  }
+  
   isActive(path) {
     return this.props.currentPath == path
   }
 
   render() {
-    let clazz = 
+    let clazzName = 
       this.isActive("/") ? "is-active" : ""
 
     return (
-      <div className="tabs">
-        <ul>
-          <li className={ clazz } style={ { marginTop: ".25em" } }>
+      <div className="tabs is-medium">
+        <ul style={{ marginLeft: "0", marginRight: "0", marginBottom: "5px" }}>
+          <li className={ clazzName } style={ { marginTop: ".25em" } }>
             <Link to="/">
               Projects
             </Link>
           </li>
-          {
-            (this.currentProjectId)
-            ? this.currentProjectTab
-            : null
-          }
+          { this.props.openedProjects.list.map(this.createProjectTab) }
         </ul>
       </div>
     )
@@ -53,9 +69,9 @@ class MenuContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let { currentProject, projects } = state
+  let { currentProject, openedProjects, projects } = state
 
-  return { currentProject, projects }
+  return { currentProject, openedProjects, projects }
 }
 
 const mapDispatchToProps = (dispatch) => {

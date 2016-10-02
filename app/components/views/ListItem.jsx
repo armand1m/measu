@@ -9,7 +9,6 @@ export default class ListItem extends React.Component {
       contentClassName += " list-item__content--active"
     }
 
-
     return (
       <div className="box">
         <article className="media">

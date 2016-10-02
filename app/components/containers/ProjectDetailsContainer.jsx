@@ -31,7 +31,7 @@ class ProjectDetailsContainer extends React.Component {
   }
 
   get currentKey() {
-    return this.props.currentProject.key 
+    return this.props.projectId 
   }
 
   get project() {
@@ -129,9 +129,9 @@ class ProjectDetailsContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let { tasks, projects, currentProject } = state
+  let { tasks, projects } = state
 
-  return { tasks, projects, currentProject }
+  return { tasks, projects }
 }
 
 export default connect(mapStateToProps)(ProjectDetailsContainer);
