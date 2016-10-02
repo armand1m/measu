@@ -8,10 +8,9 @@
   <p align="center">
     Service and project cost measurement.
   </p>
-  <p align="center">
-    [![Build Status](https://travis-ci.org/armand1m/measu.svg?branch=master)](https://travis-ci.org/armand1m/measu)
-  </p>
 </p>
+
+[![Build Status](https://travis-ci.org/armand1m/measu.svg?branch=master)](https://travis-ci.org/armand1m/measu)
 
 ### Powered by
  - [facebook/react](https://github.com/facebook/react)
