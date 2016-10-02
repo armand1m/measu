@@ -52,7 +52,7 @@ class ProjectListContainer extends React.Component {
     let projectsKeys = Object.keys(this.projects)
 
     if (this.state.loading)
-      return (<LoadingBox />)
+      return (<LoadingBox fullHeight={ true } />)
 
     if (!(projectsKeys.length || this.state.loading))
       return (

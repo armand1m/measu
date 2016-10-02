@@ -6,7 +6,7 @@ export default class LoadingBox extends React.Component {
     return (
       <div style={{ 
         display:"flex", 
-        height: "50vh",
+        height: this.props.fullHeight ? "50vh" : "auto",
         justifyContent: "center", 
         alignItems: "center",
       }}>

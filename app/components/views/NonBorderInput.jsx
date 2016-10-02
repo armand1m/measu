@@ -17,7 +17,7 @@ export default class NonBorderInput extends React.Component {
     return (
       <AutosizeInput 
         { ...this.props }
-        minWidth="30"
+        minWidth="40"
         inputStyle={ styleObj } />
     )
   }

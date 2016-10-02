@@ -38,7 +38,7 @@ export default class Project extends React.Component {
         keyMap={ keyMap }
         handlers={ handlers }>
         <div>
-          <div className="content columns">
+          <div className="content columns" style={{ marginLeft: "0", marginRight: "0" }}>
             <div className="column is-8">
               <TaskListContainer projectId={ this.projectId } />
             </div>

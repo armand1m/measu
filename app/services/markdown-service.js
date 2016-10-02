@@ -43,7 +43,7 @@ const _generateTaskBody = (project, task) => `
 
 **Task Total Hours:** ${getTaskTotalHours(task)} hours
 
-**Task Total Value:** R$ ${ task.discounted ? 0 : getTaskTotalValue(project.valuePerHour, task)}
+**Task Total Value:** R$ ${ task.discounted ? 0 : getTaskTotalValue(project.valuePerHour, task) }
 `
 
 const _generateBody = (project, tasks) => {
