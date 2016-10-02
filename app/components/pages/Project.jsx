@@ -33,29 +33,26 @@ export default class Project extends React.Component {
 
     return (
       <HotKeys
-        className="container is-fluid"
         style={ { outline: "none" } }
         keyMap={ keyMap }
         handlers={ handlers }>
-        <div>
-          <div className="content columns" style={{ marginLeft: "0", marginRight: "0" }}>
-            <div className="column is-8">
-              <TaskListContainer projectId={ this.projectId } />
-            </div>
+        <div className="content columns" style={{ marginLeft: "0", marginRight: "0" }}>
+          <div className="column is-8">
+            <TaskListContainer projectId={ this.projectId } />
+          </div>
 
-            <div className="column is-4">
-              <ul>
-                <div className="box">
-                  <ProjectDetailsContainer projectId={ this.projectId } />
-                </div>
+          <div className="column is-4">
+            <ul>
+              <div className="box">
+                <ProjectDetailsContainer projectId={ this.projectId } />
+              </div>
 
-                <div className="box">
-                  <TaskFormContainer 
-                    ref={component => this._taskFormContainer = component} 
-                    projectId={ this.projectId } />
-                </div>
-              </ul>
-            </div>
+              <div className="box">
+                <TaskFormContainer 
+                  ref={component => this._taskFormContainer = component} 
+                  projectId={ this.projectId } />
+              </div>
+            </ul>
           </div>
         </div>
       </HotKeys>
