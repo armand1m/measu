@@ -4,15 +4,24 @@ import TaskContainer from './TaskContainer.jsx';
 import MessageBox from '../views/MessageBox.jsx';
 import { setTasks, removeTask, addTask, changeTask } from '../../actions/task';
 import TaskService from '../../services/task-service';
+import LoadingBox from '../views/LoadingBox.jsx'
 
 class TaskListContainer extends React.Component {
   constructor(props) {
     super(props)
     this.createTaskContainer = this.createTaskContainer.bind(this)
+
+    this.state = {
+      loading: true
+    }
   }
 
   componentDidMount() {
     var ref = TaskService.getReference()
+
+    ref.once('value', snapshot => {
+      this.setState({ loading: false })
+    })
 
     ref.on('child_added', snapshot => {
       this.props.dispatch(addTask(snapshot.key, snapshot.val()))
@@ -68,7 +77,11 @@ class TaskListContainer extends React.Component {
         </MessageBox>
       )
 
-    if (!this.currentProjectTasks.length)
+
+    if (this.state.loading)
+      return (<LoadingBox />)
+
+    if (!(this.currentProjectTasks.length || this.state.loading))
       return (
         <MessageBox>
           No tasks in the current project.
