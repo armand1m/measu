@@ -16,8 +16,6 @@
 
 [![Build Status](https://travis-ci.org/armand1m/measu.svg?branch=master)](https://travis-ci.org/armand1m/measu)
 
----
-
 ## Description
 
 Measu is a tool created in 2016 for helping me when I was working in freelance projects for Fluxor, a company that me and [@guilhermelimak](https://github.com/guilhermelimak) were running at that time. 
