@@ -64,4 +64,4 @@ Still, I think is a nice project, people can have some insights from it, so the 
 
 ## License
 
-[Measu is BSD Licensed.](https://github.com/armand1m/measu/blob/master/LICENSE
+[Measu is BSD Licensed.](https://github.com/armand1m/measu/blob/master/LICENSE.md)
